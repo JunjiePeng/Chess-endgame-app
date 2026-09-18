@@ -13,7 +13,7 @@ export class Engine {
     });
     return this.ready;
   }
-  analyze(fen,milliseconds=450){
+  analyze(fen,milliseconds=450,skill=20){
     const task=this.queue.catch(()=>{}).then(async()=>{
       await this.init();
       return new Promise((resolve,reject)=>{
@@ -27,6 +27,7 @@ export class Engine {
           if(score)evaluation={type:score[1],value:Number(score[2])};
           if(data.startsWith('bestmove ')){clearTimeout(timeout);worker.onmessage=null;resolve({move:data.split(' ')[1],evaluation});}
         };
+        worker.postMessage('setoption name Skill Level value '+Math.max(0,Math.min(20,Math.round(skill))));
         worker.postMessage('position fen '+fen);
         worker.postMessage('go movetime '+milliseconds);
       });
