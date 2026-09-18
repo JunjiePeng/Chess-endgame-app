@@ -5,7 +5,7 @@ const $=id=>document.getElementById(id),engine=new Engine();
 const names={k:'king',q:'queen',r:'rook',b:'bishop',n:'knight',p:'pawn'};
 let lesson=lessons[0],game=new Chess(lesson.fen),selected=null,flipped=false,busy=false,finished=false,success=false,revision=0,hintLevel=0,hintSquares=[],pendingPromotion=null,opponentError=false;
 const completed=new Set();
-const pieceImage=(code,alt='')=>`<img src="/pieces/${code}.svg" alt="${alt}" draggable="false">`;
+const pieceImage=(code,alt='')=>`<img src="./pieces/${code}.svg" alt="${alt}" draggable="false">`;
 function message(text){$('feedback').textContent=text;}
 function renderLibrary(){
   let group='';$('exercise-list').innerHTML=lessons.map(item=>{
