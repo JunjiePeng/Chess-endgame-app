@@ -6,6 +6,8 @@ A static chess endgame practice room, published at https://junjiepeng.github.io/
 
 Settings, per-colour results (including successful defensive draws), daily completion streaks and the current game are saved locally. Your progress offers validated JSON backup export/import. Language and mute preferences are initially inherited from the opening trainer when available on the same origin; its progress and other settings are never changed. There is no cloud sync or account requirement.
 
+Progress changes merge across open tabs using Web Locks where available. An idle tab preserves the latest saved game and settings. Damaged autosaved positions are discarded independently of valid results; manual backup imports remain strictly validated. Superseded queued engine analyses are skipped, and engine failures can be retried.
+
 The installable app caches lessons, pieces and the complete engine for offline practice after the initial download. Font loading is optional and does not block practice. Third-party attributions and license links are in `dist/credits.html`.
 
 ## Publishing
@@ -18,4 +20,4 @@ The `.openai/hosting.json` file records the original, unpublished Sites registra
 
 ## Lesson checks
 
-All 24 starting positions have been checked against the [Lichess tablebase](https://github.com/lichess-org/lila-tablebase). `tests/positions.json` stores the verified FENs, outcomes and outcome-preserving first moves. Run `node --test tests/endgames.test.mjs` to check lesson integrity, mirrored positions, underpromotion, defensive draw scoring, and compatibility with existing backups. These fixtures are authoring checks; practice still works completely offline.
+All 24 starting positions have been checked against the [Lichess tablebase](https://github.com/lichess-org/lila-tablebase). `tests/positions.json` stores the verified FENs, outcomes and outcome-preserving first moves. Run `node --test tests/*.test.mjs` to check lesson integrity, mirrored positions, underpromotion, defensive draw scoring, backup compatibility, concurrent saves, long-game recovery, engine retries and app updates. These fixtures are authoring checks; practice still works completely offline.

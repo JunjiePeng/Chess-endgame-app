@@ -3,33 +3,55 @@ export class Engine {
   constructor(){ this.queue=Promise.resolve(); this.worker=null; this.ready=null; }
   init(){
     if(this.ready) return this.ready;
-    this.ready=new Promise((resolve,reject)=>{
-      const worker=this.worker=new Worker(new URL('./vendor/stockfish-17.1-lite-single-03e3232.js',import.meta.url));
-      const timeout=setTimeout(()=>fail(new Error('The chess engine did not load. Please try again.')),20000);
-      const fail=(error)=>{clearTimeout(timeout);worker.terminate();this.ready=null;this.worker=null;reject(error);};
-      worker.onerror=()=>fail(new Error('The chess engine could not load. Please try again.'));
-      worker.onmessage=({data})=>{if(data==='uciok'){worker.postMessage('setoption name Hash value 16');worker.postMessage('isready');}if(data==='readyok'){clearTimeout(timeout);worker.onmessage=null;resolve();}};
-      worker.postMessage('uci');
+    const initialization=new Promise((resolve,reject)=>{
+      let worker=null,timeout;
+      const fail=(error)=>{
+        clearTimeout(timeout);
+        if(worker){worker.onmessage=null;worker.onerror=null;worker.terminate();}
+        if(this.worker===worker){this.ready=null;this.worker=null;}
+        reject(error);
+      };
+      try{
+        worker=this.worker=new Worker(new URL('./vendor/stockfish-17.1-lite-single-03e3232.js',import.meta.url));
+        timeout=setTimeout(()=>fail(new Error('The chess engine did not load. Please try again.')),20000);
+        worker.onerror=()=>fail(new Error('The chess engine could not load. Please try again.'));
+        worker.onmessage=({data})=>{
+          try{
+            if(data==='uciok'){worker.postMessage('setoption name Hash value 16');worker.postMessage('isready');}
+            if(data==='readyok'){clearTimeout(timeout);worker.onmessage=null;resolve();}
+          }catch(error){fail(error);}
+        };
+        worker.postMessage('uci');
+      }catch(error){fail(error);}
     });
-    return this.ready;
+    this.ready=initialization;
+    // Synchronous construction failures happen before this.ready is assigned.
+    initialization.catch(()=>{if(this.ready===initialization)this.ready=null;});
+    return initialization;
   }
-  analyze(fen,milliseconds=450,skill=20){
+  // Superseded queued requests resolve null without starting a search.
+  analyze(fen,milliseconds=450,skill=20,isCurrent=()=>true){
     const task=this.queue.catch(()=>{}).then(async()=>{
+      if(!isCurrent())return null;
       await this.init();
+      if(!isCurrent())return null;
       return new Promise((resolve,reject)=>{
         const worker=this.worker;
         let evaluation=null;
-        const timeout=setTimeout(()=>{worker.terminate();this.ready=null;this.worker=null;reject(new Error('The engine took too long. Please try again.'));},15000);
-        worker.onerror=()=>{clearTimeout(timeout);worker.terminate();this.ready=null;this.worker=null;reject(new Error('The engine stopped. Please try again.'));};
+        const fail=error=>{clearTimeout(timeout);worker.onmessage=null;worker.onerror=null;worker.terminate();if(this.worker===worker){this.ready=null;this.worker=null;}reject(error);};
+        const timeout=setTimeout(()=>fail(new Error('The engine took too long. Please try again.')),15000);
+        worker.onerror=()=>fail(new Error('The engine stopped. Please try again.'));
         worker.onmessage=({data})=>{
           if(typeof data!=='string')return;
           const score=data.match(/score (cp|mate) (-?\d+)/);
           if(score)evaluation={type:score[1],value:Number(score[2])};
           if(data.startsWith('bestmove ')){clearTimeout(timeout);worker.onmessage=null;resolve({move:data.split(' ')[1],evaluation});}
         };
-        worker.postMessage('setoption name Skill Level value '+Math.max(0,Math.min(20,Math.round(skill))));
-        worker.postMessage('position fen '+fen);
-        worker.postMessage('go movetime '+milliseconds);
+        try{
+          worker.postMessage('setoption name Skill Level value '+Math.max(0,Math.min(20,Math.round(skill))));
+          worker.postMessage('position fen '+fen);
+          worker.postMessage('go movetime '+milliseconds);
+        }catch(error){fail(error);}
       });
     });
     this.queue=task;return task;

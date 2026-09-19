@@ -1,0 +1,15 @@
+import vm from 'node:vm';import fs from 'node:fs/promises';import assert from 'node:assert/strict';import path from 'node:path';import test from 'node:test';import {fileURLToPath} from 'node:url';
+
+test('offline release caches every module and keeps the opening trainer untouched',async()=>{
+const scope='https://junjiepeng.github.io/Chess-endgame-app/',root=fileURLToPath(new URL('../dist/',import.meta.url)),handlers={},cacheData=new Map([['debut-existing',new Map([['opening','safe']])],['endgame-old',new Map()]]),deleted=[],network=[];let claimed=false,skip=false;
+const caches={keys:async()=>[...cacheData.keys()],delete:async key=>{deleted.push(key);return cacheData.delete(key);},open:async name=>{if(!cacheData.has(name))cacheData.set(name,new Map());const values=cacheData.get(name);return {addAll:async requests=>{const pairs=[];for(const r of requests){const rel=new URL(r.url).pathname.slice(new URL(scope).pathname.length)||'index.html';const data=await fs.readFile(path.join(root,rel));pairs.push([r.url,new Response(data)]);}for(const [k,v] of pairs)values.set(k,v);},match:async r=>values.get((typeof r==='string'?r:r.url).split('?')[0])?.clone()};}};
+const self={registration:{scope},clients:{claim:async()=>claimed=true},skipWaiting:()=>skip=true,addEventListener:(name,cb)=>handlers[name]=cb};
+vm.runInNewContext(await fs.readFile(path.join(root,'sw.js'),'utf8'),{self,caches,Request,URL,fetch:async request=>{network.push(request.url);throw Error('offline');}});
+let waiting;handlers.install({waitUntil:p=>waiting=p});await waiting;assert([...cacheData.entries()].find(([key])=>key.startsWith('endgame-')&&key!=='endgame-old')[1].size>=36);
+handlers.activate({waitUntil:p=>waiting=p});await waiting;assert(claimed);assert.deepEqual(deleted,['endgame-old']);assert(cacheData.has('debut-existing'));
+for(const relative of ['./','./app.mjs','./persistence.mjs','./icons/icon-512.png','./vendor/stockfish-17.1-lite-single-03e3232.wasm']){let result;handlers.fetch({request:new Request(new URL(relative,scope)),respondWith:p=>result=p});const response=await result;assert.equal(response.status,200);assert((await response.arrayBuffer()).byteLength>100);}
+assert.equal(network.length,0);let intercepted=false;handlers.fetch({request:new Request('https://junjiepeng.github.io/Chess-opening-app/'),respondWith:()=>intercepted=true});assert.equal(intercepted,false);
+handlers.message({data:{type:'SKIP_WAITING'}});assert(skip);
+const manifest=JSON.parse(await fs.readFile(path.join(root,'manifest.webmanifest'),'utf8'));assert.equal(new URL(manifest.scope,scope).href,scope);for(const icon of manifest.icons)assert((await fs.stat(path.join(root,icon.src))).size>0);
+for(const file of ['app.mjs','engine.mjs','preferences.mjs','persistence.mjs','board-effects.mjs','offline.mjs']){const code=await fs.readFile(path.join(root,file),'utf8');for(const match of code.matchAll(/from ['"](\.\/[^'"]+)['"]/g))assert((await fs.stat(path.join(root,match[1]))).isFile());}
+});

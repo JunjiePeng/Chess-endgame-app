@@ -24,8 +24,8 @@ jobs:
     steps:
       - name: Check out the website
         uses: actions/checkout@v6
-      - name: Check lesson integrity
-        run: node --test tests/endgames.test.mjs
+      - name: Check practice and recovery
+        run: node --test tests/*.test.mjs
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
       - name: Upload the website

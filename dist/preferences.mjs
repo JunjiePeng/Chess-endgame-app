@@ -42,8 +42,12 @@ export function validateData(raw){
   let session=null;
   if(raw.session){
     const s=raw.session,lesson=lessons.find(l=>l.id===s.lessonId);
-    if(!lesson||!['w','b'].includes(s.side)||!Array.isArray(s.moves)||s.moves.length>500)throw Error('Invalid saved position');
+    if(!lesson||!['w','b'].includes(s.side)||!Array.isArray(s.moves))throw Error('Invalid saved position');
     const g=new Chess(initialFen(lesson,s.side));
+    // Every 100 reversible plies ends the game. Each original pawn can advance
+    // at most six times, and each non-king piece can be captured only once.
+    const pieces=g.board().flat().filter(Boolean),maxPlies=100*(1+pieces.filter(p=>p.type==='p').length*6+pieces.filter(p=>p.type!=='k').length);
+    if(s.moves.length>maxPlies)throw Error('Invalid saved position');
     for(const u of s.moves){if(typeof u!=='string'||!/^([a-h][1-8]){2}[qrbn]?$/.test(u))throw Error('Invalid saved move');g.move({from:u.slice(0,2),to:u.slice(2,4),promotion:u[4]||'q'});}
     session={lessonId:s.lessonId,side:s.side,moves:[...s.moves],flipped:!!s.flipped,finished:!!s.finished,success:!!s.success,usedHelp:!!s.usedHelp,credited:!!s.credited,attemptRecorded:!!s.attemptRecorded};
     const record=progress[`${s.lessonId}:${s.side}`],result=assessOutcome(g,lesson,s.side);
@@ -55,7 +59,17 @@ export function validateData(raw){
 }
 export function freshData(){return {app:'endgame-practice',version:2,preferences:{...defaults},progress:{},activity:{},session:null};}
 export function loadData(storage){
-  try{const raw=storage.getItem(KEY);if(raw)return validateData(JSON.parse(raw));}catch{}
+  try{
+    const raw=storage.getItem(KEY);
+    if(raw){
+      const parsed=JSON.parse(raw);
+      try{return validateData(parsed);}catch{
+        // A damaged autosaved position must not discard otherwise valid results.
+        // Manual imports still use strict validation of the complete backup.
+        return validateData({...parsed,session:null});
+      }
+    }
+  }catch{}
   const data=freshData();
   // These harmless preferences are shared only on the same GitHub Pages origin.
   try{const lang=storage.getItem('otLang');if(['en','zh'].includes(lang))data.preferences.language=lang;

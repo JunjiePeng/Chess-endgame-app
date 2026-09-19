@@ -7,7 +7,12 @@ export async function setupOffline({onStatus,onUpdate,onInstall}){
  navigator.serviceWorker.addEventListener('controllerchange',()=>{if(reloadRequested)location.reload();});
  try{
   const registration=await navigator.serviceWorker.register(new URL('./sw.js',import.meta.url),{scope:'./',updateViaCache:'none'});
-  const update=worker=>onUpdate(()=>{reloadRequested=true;worker.postMessage({type:'SKIP_WAITING'});});
+  const update=worker=>onUpdate(()=>{
+   reloadRequested=true;
+   // Another tab may already have activated the worker offered by this banner.
+   if(registration.waiting)registration.waiting.postMessage({type:'SKIP_WAITING'});
+   else if(worker.state!=='activating')location.reload();
+  });
   if(registration.active)onStatus('engineOffline');
   if(registration.waiting)update(registration.waiting);
   const watch=worker=>{
