@@ -1,7 +1,8 @@
 import {Chess} from './vendor/chess.mjs';
 import {lessons} from './lessons.mjs';
+import {assessOutcome} from './outcome.mjs';
 export const KEY='endgame-practice-v2';
-export const defaults={language:'en',sound:true,skill:20,side:'w',dots:true,coordinates:true,arrows:true,animation:true,evaluation:false};
+export const defaults={language:'en',sound:true,skill:20,side:'w',dots:true,coordinates:true,arrows:true,animation:true,evaluation:false,libraryGroup:'all',libraryLevel:'all',libraryStatus:'all'};
 const ids=new Set(lessons.map(l=>l.id));
 export function normalizePreferences(input={}){
   input=input&&typeof input==='object'?input:{};
@@ -10,6 +11,9 @@ export function normalizePreferences(input={}){
   if(['en','zh'].includes(input.language))p.language=input.language;
   if(['w','b'].includes(input.side))p.side=input.side;
   if(Number.isInteger(input.skill)&&input.skill>=0&&input.skill<=20)p.skill=input.skill;
+  if(['all',...new Set(lessons.map(l=>l.group))].includes(input.libraryGroup))p.libraryGroup=input.libraryGroup;
+  if(['all','Foundation','Intermediate','Advanced'].includes(input.libraryLevel))p.libraryLevel=input.libraryLevel;
+  if(['all','todo','done'].includes(input.libraryStatus))p.libraryStatus=input.libraryStatus;
   return p;
 }
 export function initialFen(lesson,side='w'){
@@ -42,12 +46,8 @@ export function validateData(raw){
     const g=new Chess(initialFen(lesson,s.side));
     for(const u of s.moves){if(typeof u!=='string'||!/^([a-h][1-8]){2}[qrbn]?$/.test(u))throw Error('Invalid saved move');g.move({from:u.slice(0,2),to:u.slice(2,4),promotion:u[4]||'q'});}
     session={lessonId:s.lessonId,side:s.side,moves:[...s.moves],flipped:!!s.flipped,finished:!!s.finished,success:!!s.success,usedHelp:!!s.usedHelp,credited:!!s.credited,attemptRecorded:!!s.attemptRecorded};
-    const record=progress[`${s.lessonId}:${s.side}`],last=g.history({verbose:true}).at(-1);
-    const safePromotion=lesson.goal==='promotion'&&last?.color===s.side&&last.promotion&&!g.moves({verbose:true}).some(m=>m.to===last.to&&m.captured);
-    const pawnGone=lesson.goal==='promotion'&&!g.board().flat().some(p=>p?.color===s.side&&['p','q','r'].includes(p.type));
-    const ended=g.isGameOver()||safePromotion||pawnGone;
-    const won=g.isCheckmate()?g.turn()!==s.side:!g.isDraw()&&!!safePromotion;
-    if(session.finished!==!!ended||session.success!==(session.finished&&won)||
+    const record=progress[`${s.lessonId}:${s.side}`],result=assessOutcome(g,lesson,s.side);
+    if(session.finished!==result.finished||session.success!==result.success||
       (s.moves.length&&!session.attemptRecorded)||(session.attemptRecorded&&!record?.attempts)||
       (session.credited&&!record?.wins)||(session.success&&!session.credited))throw Error('Invalid result');
   }
