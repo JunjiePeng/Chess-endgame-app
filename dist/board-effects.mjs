@@ -4,13 +4,13 @@ export class Sounds{
  play(kind='move'){if(!this.enabled()||!this.context||this.context.state!=='running')return;const ctx=this.context;const notes=kind==='win'?[392,494,587]:kind==='capture'?[340,220]:kind==='check'?[490,620]:[330];notes.forEach((hz,i)=>{const osc=ctx.createOscillator(),gain=ctx.createGain(),start=ctx.currentTime+i*.075;osc.type='triangle';osc.frequency.setValueAtTime(hz,start);osc.frequency.exponentialRampToValueAtTime(hz*.7,start+.08);gain.gain.setValueAtTime(.0001,start);gain.gain.exponentialRampToValueAtTime(.075,start+.004);gain.gain.exponentialRampToValueAtTime(.0001,start+.13);osc.connect(gain).connect(ctx.destination);osc.start(start);osc.stop(start+.14);});}
 }
 export function animateMove(board,move,enabled){if(!enabled||matchMedia('(prefers-reduced-motion: reduce)').matches)return;const a=board.querySelector(`[data-square="${move.from}"]`),b=board.querySelector(`[data-square="${move.to}"]`),piece=b?.querySelector('img');if(!a||!piece?.animate)return;const r=a.getBoundingClientRect(),s=b.getBoundingClientRect();b.classList.add('animating');piece.animate([{transform:`translate(${r.x-s.x}px,${r.y-s.y}px)`},{transform:'translate(0,0)'}],{duration:160,easing:'ease-out'}).finished.catch(()=>{}).finally(()=>b.classList.remove('animating'));}
-export function wireBoardPointer({board,ghost,canMove,isMine,select,move,mark,onCancel,getRevision}){
+export function wireBoardPointer({board,ghost,canMove,isMine,select,move,mark,onCancel,getRevision,onNormalPointer}){
  let drag=null,suppressUntil=0,suppressFrom=null,suppressTo=null;
  const squareAt=(x,y)=>{const r=board.getBoundingClientRect();if(x<r.left||x>=r.right||y<r.top||y>=r.bottom)return null;return board.children[Math.floor((y-r.top)/r.height*8)*8+Math.floor((x-r.left)/r.width*8)]?.dataset.square||null;};
  const cleanup=()=>{ghost.hidden=true;board.querySelectorAll('.drag-source,.drag-over').forEach(x=>x.classList.remove('drag-source','drag-over'));};
  board.addEventListener('contextmenu',e=>e.preventDefault());
  board.addEventListener('pointerdown',e=>{if(e.button!==0&&e.button!==2)return;const sq=e.target.closest('[data-square]')?.dataset.square;if(!sq)return;
-  const right=e.button===2;if(!right&&(!canMove()||!isMine(sq)))return;
+  const right=e.button===2;if(!right){onNormalPointer?.(sq);if(!canMove()||!isMine(sq))return;}
   drag={sq,right,x:e.clientX,y:e.clientY,id:e.pointerId,moved:false,revision:getRevision()};
   if(!right)select(sq);try{board.setPointerCapture(e.pointerId);}catch{};
  });

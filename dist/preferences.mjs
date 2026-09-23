@@ -1,6 +1,7 @@
 import {Chess} from './vendor/chess.mjs';
 import {lessons} from './lessons.mjs';
 import {assessOutcome} from './outcome.mjs';
+import {variantIds,variantFen} from './variants.mjs';
 export const KEY='endgame-practice-v2';
 export const defaults={language:'en',sound:true,skill:20,side:'w',dots:true,coordinates:true,arrows:true,animation:true,evaluation:false,libraryGroup:'all',libraryLevel:'all',libraryStatus:'all'};
 const ids=new Set(lessons.map(l=>l.id));
@@ -16,9 +17,11 @@ export function normalizePreferences(input={}){
   if(['all','todo','done'].includes(input.libraryStatus))p.libraryStatus=input.libraryStatus;
   return p;
 }
-export function initialFen(lesson,side='w'){
-  if(side==='w')return lesson.fen;
-  const parts=lesson.fen.split(' ');
+export function initialFen(lesson,side='w',variant=0){
+  if(!variantIds(lesson).includes(variant))throw Error('Invalid position variant');
+  const fen=variantFen(lesson.fen,variant);
+  if(side==='w')return fen;
+  const parts=fen.split(' ');
   parts[0]=parts[0].split('/').reverse().join('/').replace(/[a-z]/gi,c=>c===c.toUpperCase()?c.toLowerCase():c.toUpperCase());
   parts[1]='b';return parts.join(' ');
 }
@@ -41,15 +44,16 @@ export function validateData(raw){
   for(const [day,n] of Object.entries(raw.activity||{})){if(!/^\d{4}-\d{2}-\d{2}$/.test(day)||!count(n))throw Error('Invalid activity record');activity[day]=n;}
   let session=null;
   if(raw.session){
-    const s=raw.session,lesson=lessons.find(l=>l.id===s.lessonId);
-    if(!lesson||!['w','b'].includes(s.side)||!Array.isArray(s.moves))throw Error('Invalid saved position');
-    const g=new Chess(initialFen(lesson,s.side));
+    const s=raw.session,lesson=lessons.find(l=>l.id===s.lessonId),variant=s.variant===undefined?0:s.variant;
+    if(!lesson||!['w','b'].includes(s.side)||!Array.isArray(s.moves)||!variantIds(lesson).includes(variant))throw Error('Invalid saved position');
+    const g=new Chess(initialFen(lesson,s.side,variant));
     // Every 100 reversible plies ends the game. Each original pawn can advance
     // at most six times, and each non-king piece can be captured only once.
     const pieces=g.board().flat().filter(Boolean),maxPlies=100*(1+pieces.filter(p=>p.type==='p').length*6+pieces.filter(p=>p.type!=='k').length);
     if(s.moves.length>maxPlies)throw Error('Invalid saved position');
     for(const u of s.moves){if(typeof u!=='string'||!/^([a-h][1-8]){2}[qrbn]?$/.test(u))throw Error('Invalid saved move');g.move({from:u.slice(0,2),to:u.slice(2,4),promotion:u[4]||'q'});}
     session={lessonId:s.lessonId,side:s.side,moves:[...s.moves],flipped:!!s.flipped,finished:!!s.finished,success:!!s.success,usedHelp:!!s.usedHelp,credited:!!s.credited,attemptRecorded:!!s.attemptRecorded};
+    if(variant)session.variant=variant;
     const record=progress[`${s.lessonId}:${s.side}`],result=assessOutcome(g,lesson,s.side);
     if(session.finished!==result.finished||session.success!==result.success||
       (s.moves.length&&!session.attemptRecorded)||(session.attemptRecorded&&!record?.attempts)||
