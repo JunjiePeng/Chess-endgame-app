@@ -12,7 +12,7 @@ function setup(){
  function tab(){
   let data=loadData(storage);
   const errors=[];
-  const persistence=createPersistence({storage,initial:data,read:()=>data,locks,onError:error=>errors.push(error),adopt:merged=>{data.progress=merged.progress;data.activity=merged.activity;}});
+  const persistence=createPersistence({storage,initial:data,read:()=>data,locks,onError:error=>errors.push(error),adopt:merged=>{data.progress=merged.progress;data.activity=merged.activity;if(merged.practiceOrder)data.practiceOrder=merged.practiceOrder;else delete data.practiceOrder;}});
   return {get data(){return data;},set data(value){data=value;},save:options=>persistence.save(options),errors};
  }
  return {storage,tab,read:()=>validateData(JSON.parse(storage.getItem(KEY)))};
@@ -54,4 +54,15 @@ test('failed storage writes keep pending progress for the next successful save',
 test('merging into an active tab keeps its own board and preferences',async()=>{
  const app=setup(),a=app.tab(),b=app.tab();const own=clone(a.data);win(b,'opposition');await b.save();await a.save();
  assert.deepEqual(a.data.session,own.session);assert.deepEqual(a.data.preferences,own.preferences);assert.equal(a.data.progress['opposition:w'].wins,1);
+});
+
+test('shuffle decks merge independently and an idle tab cannot restore old recent positions',async()=>{
+ const app=setup(),a=app.tab(),b=app.tab();
+ a.data.practiceOrder={opposition:{remaining:['base','p02'],recent:['p01']}};
+ b.data.practiceOrder={'queen-mate':{remaining:['base','m02'],recent:['m01']}};
+ await a.save();await b.save();await a.save();
+ assert.deepEqual(app.read().practiceOrder.opposition,a.data.practiceOrder.opposition);
+ assert.deepEqual(app.read().practiceOrder['queen-mate'],b.data.practiceOrder['queen-mate']);
+ const idle=app.tab();b.data.practiceOrder.opposition={remaining:['base'],recent:['p01','p02']};await b.save();
+ await idle.save();assert.deepEqual(app.read().practiceOrder.opposition,b.data.practiceOrder.opposition);
 });

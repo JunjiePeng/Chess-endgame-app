@@ -9,10 +9,11 @@ import {setupMobileUI} from './mobile.mjs';
 import {assessOutcome} from './outcome.mjs';
 import {createPersistence} from './persistence.mjs';
 import {variantIds,chooseVariant} from './variants.mjs';
+import {positionsFor,getPosition,choosePosition,rememberPosition} from './positions.mjs';
 const $=id=>document.getElementById(id),engine=new Engine();
 let storage;try{storage=window.localStorage;}catch{storage={getItem:()=>null,setItem:()=>{throw Error('Storage blocked');}};}
 let data=loadData(storage),prefs=data.preferences,t=translator(prefs.language),libraryQuery='';
-let lesson=lessons[0],player=prefs.side,variant=0,game=new Chess(initialFen(lesson,player)),selected=null,flipped=player==='b';
+let lesson=lessons[0],player=prefs.side,variant=0,positionId='base',game=new Chess(initialFen(lesson,player)),selected=null,flipped=player==='b';
 const lastVariants=new Map();
 let busy=false,finished=false,success=false,revision=0,reviewPly=null,hintLevel=0,hintMove=null,hintText=null,pendingPromotion=null,opponentError=false;
 let usedHelp=false,credited=false,attemptRecorded=false,feedback={key:'intro'},markMode=false,markFrom=null,marks=[],pendingImport=null;
@@ -20,7 +21,7 @@ let evalSequence=0,evalKey=null,evalValue=null,engineReady=false,engineFailed=fa
 const sounds=new Sounds(()=>prefs.sound),pieceNames={k:'king',q:'queen',r:'rook',b:'bishop',n:'knight',p:'pawn'};
 const persistence=createPersistence({storage,initial:data,read:()=>data,locks:navigator.locks,adopt:merged=>{
  const changed=JSON.stringify(data.progress)!==JSON.stringify(merged.progress)||JSON.stringify(data.activity)!==JSON.stringify(merged.activity);
- data.progress=merged.progress;data.activity=merged.activity;
+ data.progress=merged.progress;data.activity=merged.activity;if(merged.practiceOrder)data.practiceOrder=merged.practiceOrder;else delete data.practiceOrder;
  // A backup imported in another tab may remove this attempt's totals. Keep
  // the board visible, but only a new move should begin recording it again.
  const record=data.progress[recordKey()];
@@ -29,17 +30,17 @@ const persistence=createPersistence({storage,initial:data,read:()=>data,locks:na
 },onError:()=>{if(!storageWarning){storageWarning=true;toast('storageError');}}});
 const image=(code)=>`<img src="./pieces/${code}.svg" alt="" draggable="false">`;
 const sideName=c=>t(c==='w'?'white':'black');
-const text=field=>lessonText(lesson,field,prefs.language,player,variant);
+const text=field=>lessonText(lesson,field,prefs.language,player,variant,positionId);
 const recordKey=()=>`${lesson.id}:${player}`;
 const completedCount=side=>lessons.filter(l=>data.progress[`${l.id}:${side}`]?.wins>0).length;
 const totalCompleted=()=>Object.values(data.progress).filter(p=>p.wins>0).length;
 const isReviewing=()=>reviewPly!==null;
 const ply=()=>reviewPly??game.history().length;
-const viewGame=()=>isReviewing()?new Chess(reviewPly===0?initialFen(lesson,player,variant):game.history({verbose:true})[reviewPly-1].after):game;
+const viewGame=()=>isReviewing()?new Chess(reviewPly===0?initialFen(lesson,player,variant,positionId):game.history({verbose:true})[reviewPly-1].after):game;
 const canPlay=()=>!busy&&!finished&&!isReviewing()&&game.turn()===player&&!markMode&&!$('promotion-dialog').open;
 function toast(key,args={}){$('toast').textContent=t(key,args);$('toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').hidden=true,5000);}
 function persist(options){return persistence.save(options);}
-function saveSession(){data.preferences=prefs;const moves=game.history({verbose:true}).map(m=>m.from+m.to+(m.promotion||''));data.session=moves.length&&!attemptRecorded||success&&!credited?null:{lessonId:lesson.id,side:player,...(variant?{variant}:{}),moves,flipped,finished,success,usedHelp,credited,attemptRecorded};return persist();}
+function saveSession(){data.preferences=prefs;const moves=game.history({verbose:true}).map(m=>m.from+m.to+(m.promotion||''));data.session=moves.length&&!attemptRecorded||success&&!credited?null:{lessonId:lesson.id,side:player,...(variant?{variant}:{}),...(positionId!=='base'?{positionId}:{}),moves,flipped,finished,success,usedHelp,credited,attemptRecorded};return persist();}
 function message(key,args={}){feedback={key,args};$('feedback').textContent=key==='intro'?text('intro'):t(key,args);}
 function strengthName(){return t(prefs.skill<5?'beginner':prefs.skill<10?'casual':prefs.skill<20?'club':'strongest');}
 function newAttempt(){const key=recordKey();if(attemptRecorded&&data.progress[key]?.attempts)return;attemptRecorded=true;data.progress[key]??={attempts:0,wins:0,cleanWins:0,bestMoves:null,lastPlayed:''};data.progress[key].attempts++;data.progress[key].lastPlayed=new Date().toISOString();}
@@ -83,7 +84,7 @@ function localize(){
  $('sound-btn').textContent=prefs.sound?'♪':'♩';$('sound-btn').setAttribute('aria-pressed',String(prefs.sound));$('sound-btn').ariaLabel=t(prefs.sound?'soundOn':'soundOff');$('sound-btn').title=$('sound-btn').ariaLabel;
  $('progress-btn').ariaLabel=t('progress');$('board').ariaLabel=t('helpPlay');$('evaluation').ariaLabel=t('evalLabel');$('review-controls').ariaLabel=t('helpReview');
  $('exercise-category').textContent=text('group').toUpperCase()+` / ${String(lessons.indexOf(lesson)+1).padStart(2,'0')}`;$('exercise-title').textContent=text('title');$('exercise-description').textContent=text('subtitle');$('difficulty').textContent=t(lesson.level.toLowerCase());
- $('setup-label').textContent=t('setupCount',{n:variantIds(lesson).indexOf(variant)+1,total:variantIds(lesson).length});
+ $('setup-label').textContent=t('positionCount',{n:positionsFor(lesson).findIndex(p=>p.id===positionId)+1,total:positionsFor(lesson).length});
  $('mobile-goal').textContent=t('practiceGoal',{goal:text('objective')});$('objective-title').textContent=text('objective');$('objective-text').textContent=text('description');$('principle-text').textContent=text('principle');
  $('objective-pieces').innerHTML=lesson.material.map(p=>p==='vs'?'<span>vs.</span>':image((p[0]==='w'?player:player==='w'?'b':'w')+p[1])).join('');
  $('you-avatar').innerHTML=image(player+'K');$('opponent-avatar').innerHTML=image((player==='w'?'b':'w')+'K');$('you-colour').textContent=sideName(player);$('opponent-label').textContent=sideName(player==='w'?'b':'w');$('opponent-strength').textContent=strengthName();
@@ -96,17 +97,19 @@ function localize(){
  $('group-filter').value=prefs.libraryGroup;$('level-filter').value=prefs.libraryLevel;$('status-filter').value=prefs.libraryStatus;
  renderLibrary();render();if($('progress-dialog').open)renderProgress();
 }
-function startLesson(id,side=prefs.side,{save=true,variant:nextVariant}={}){
+function startLesson(id,side=prefs.side,{save=true,variant:nextVariant,positionId:nextPosition}={}){
  const found=lessons.find(l=>l.id===id);if(!found||!['w','b'].includes(side))throw Error('Unknown lesson or colour.');
+ if(nextPosition===undefined){const selection=choosePosition(found,data.practiceOrder?.[id]);nextPosition=selection.positionId;data.practiceOrder??={};data.practiceOrder[id]=selection.order;}
+ else{getPosition(found,nextPosition);data.practiceOrder??={};data.practiceOrder[id]=rememberPosition(found,nextPosition,data.practiceOrder[id]);}
  if(nextVariant===undefined)nextVariant=chooseVariant(found,lastVariants.get(id));
  if(!variantIds(found).includes(nextVariant))throw Error('Unknown setup.');
  lastVariants.set(id,nextVariant);
- revision++;evalSequence++;lesson=found;player=side;variant=nextVariant;prefs.side=side;game=new Chess(initialFen(lesson,side,variant));selected=null;flipped=side==='b';busy=false;finished=false;success=false;opponentError=false;reviewPly=null;usedHelp=false;credited=false;attemptRecorded=false;pendingPromotion=null;marks=[];markFrom=null;markMode=false;evalKey=null;evalValue=null;
+ revision++;evalSequence++;lesson=found;player=side;variant=nextVariant;positionId=nextPosition;prefs.side=side;game=new Chess(initialFen(lesson,side,variant,positionId));selected=null;flipped=side==='b';busy=false;finished=false;success=false;opponentError=false;reviewPly=null;usedHelp=false;credited=false;attemptRecorded=false;pendingPromotion=null;marks=[];markFrom=null;markMode=false;evalKey=null;evalValue=null;
  pointer?.cancel();$('promotion-dialog').close();mobileUI?.closePanel();clearHint();feedback={key:'intro'};localize();if(save)saveSession();
 }
 function restoreSession(snapshot){
  if(!snapshot){startLesson(lessons[0].id);return;}
- startLesson(snapshot.lessonId,snapshot.side,{save:false,variant:snapshot.variant??0});
+ startLesson(snapshot.lessonId,snapshot.side,{save:false,variant:snapshot.variant??0,positionId:snapshot.positionId??'base'});
  for(const u of snapshot.moves)game.move({from:u.slice(0,2),to:u.slice(2,4),promotion:u[4]||'q'});
  ({flipped,finished,success,usedHelp,credited,attemptRecorded}=snapshot);feedback={key:finished?(success?'complete':'ended'):'restored'};localize();saveSession();
  if(!finished&&game.turn()!==player)void playOpponent();
@@ -200,8 +203,8 @@ function renderProgress(){
  $('progress-summary').innerHTML=`<div><strong>${totalCompleted()} / ${lessons.length*2}</strong><span>${t('solved')}</span></div><div><strong>${wins}</strong><span>${t('wins')}</span></div><div><strong>${clean}</strong><span>${t('clean')}</span></div><p>${t('streak',{n:streak(data.activity)})}</p>`;
  $('progress-list').innerHTML=lessons.map(l=>`<section class="lesson-progress"><h3>${lessonText(l,'title',prefs.language,player)}</h3>${['w','b'].map(side=>{const r=data.progress[`${l.id}:${side}`];return `<div><span class="side-progress">${sideName(side)} ${r?.wins?'✓':''}</span><span>${r?.wins?t('best',{n:r.bestMoves}):t('unplayed')}<small>${t('attempts',{n:r?.attempts||0})}</small></span></div>`;}).join('')}</section>`).join('');
 }
-function changePreference(key,value){if(key==='side'){startLesson(lesson.id,value,{variant});return;}prefs[key]=value;localize();saveSession();if(key==='sound'&&value){sounds.unlock();sounds.play();}}
-function readState(){return {lesson:lesson.id,goal:lesson.goal,player,variant,variantCount:variantIds(lesson).length,libraryCount:lessons.length,visibleLessons:matchingLessons().map(l=>l.id),fen:game.fen(),displayFen:viewGame().fen(),reviewPly,turn:game.turn(),thinking:busy,finished,success,moves:game.history(),legalMoves:game.moves(),preferences:{...prefs},completed:lessons.filter(l=>data.progress[`${l.id}:${player}`]?.wins).map(l=>l.id)};}
+function changePreference(key,value){if(key==='side'){startLesson(lesson.id,value,{variant,positionId});return;}prefs[key]=value;localize();saveSession();if(key==='sound'&&value){sounds.unlock();sounds.play();}}
+function readState(){return {lesson:lesson.id,goal:lesson.goal,player,positionId,positionCount:positionsFor(lesson).length,variant,variantCount:variantIds(lesson).length,libraryCount:lessons.length,visibleLessons:matchingLessons().map(l=>l.id),fen:game.fen(),displayFen:viewGame().fen(),reviewPly,turn:game.turn(),thinking:busy,finished,success,moves:game.history(),legalMoves:game.moves(),preferences:{...prefs},completed:lessons.filter(l=>data.progress[`${l.id}:${player}`]?.wins).map(l=>l.id)};}
 let pointer=wireBoardPointer({board:$('board'),ghost:$('drag-ghost'),canMove:canPlay,isMine:s=>game.get(s)?.color===player,select:s=>{selected=s;renderBoard();},move:(a,b)=>attemptMove(a,b,false),mark:toggleMark,onNormalPointer:clearNormalMarks,onCancel:renderBoard,getRevision:()=>revision});
 $('board').addEventListener('click',e=>{clearNormalMarks();if(pointer.ignoreClick(e))return;const s=e.target.closest('[data-square]')?.dataset.square;if(s)onSquare(s);});
 $('board').addEventListener('keydown',e=>{const squares=[...$('board').children],index=squares.indexOf(e.target),delta={ArrowLeft:[0,-1],ArrowRight:[0,1],ArrowUp:[-1,0],ArrowDown:[1,0]}[e.key];if(delta&&index>=0){e.preventDefault();const row=Math.max(0,Math.min(7,Math.floor(index/8)+delta[0])),column=Math.max(0,Math.min(7,index%8+delta[1])),next=squares[row*8+column];squares.forEach(b=>b.tabIndex=-1);next.tabIndex=0;next.focus();}if(e.key==='Escape'){selected=null;markFrom=null;markMode=false;render();}});
@@ -209,8 +212,8 @@ $('lesson-search').oninput=e=>{libraryQuery=e.target.value;renderLibrary();};
 for(const [id,key] of [['group-filter','libraryGroup'],['level-filter','libraryLevel'],['status-filter','libraryStatus']])$(id).onchange=e=>{prefs[key]=e.target.value;renderLibrary();saveSession();};
 $('clear-filters').onclick=()=>{libraryQuery='';$('lesson-search').value='';prefs.libraryGroup='all';prefs.libraryLevel='all';prefs.libraryStatus='all';localize();saveSession();};$('shuffle-btn').onclick=choosePractice;
 $('exercise-list').onclick=e=>{const b=e.target.closest('[data-lesson]');if(b){startLesson(b.dataset.lesson);mobileUI?.returnToBoard({heading:true});}};
-$('undo-btn').onclick=undo;$('reset-btn').onclick=()=>startLesson(lesson.id,player,{variant});$('result-retry').onclick=$('reset-btn').onclick;$('randomize-btn').onclick=randomizePractice;$('flip-btn').onclick=()=>{pointer.cancel();flipped=!flipped;renderBoard();saveSession();};$('hint-btn').onclick=()=>void showHint();
-$('next-btn').onclick=()=>{if(!success){startLesson(lesson.id,player,{variant});return;}const visible=new Set(matchingLessons().map(l=>l.id)),i=lessons.indexOf(lesson),pool=lessons.slice(i+1).concat(lessons.slice(0,i)).filter(l=>visible.has(l.id)),next=pool.find(l=>!data.progress[`${l.id}:${player}`]?.wins)||pool[0]||lesson;startLesson(next.id,player,next.id===lesson.id?{variant}:{});};
+$('undo-btn').onclick=undo;$('reset-btn').onclick=()=>startLesson(lesson.id,player,{variant,positionId});$('result-retry').onclick=$('reset-btn').onclick;$('randomize-btn').onclick=randomizePractice;$('flip-btn').onclick=()=>{pointer.cancel();flipped=!flipped;renderBoard();saveSession();};$('hint-btn').onclick=()=>void showHint();
+$('next-btn').onclick=()=>{if(!success){startLesson(lesson.id,player,{variant,positionId});return;}const visible=new Set(matchingLessons().map(l=>l.id)),i=lessons.indexOf(lesson),pool=lessons.slice(i+1).concat(lessons.slice(0,i)).filter(l=>visible.has(l.id)),next=pool.find(l=>!data.progress[`${l.id}:${player}`]?.wins)||pool[0]||lesson;startLesson(next.id,player);};
 $('mark-btn').onclick=()=>{markMode=!markMode;selected=null;markFrom=null;render();};$('clear-marks-btn').onclick=()=>{marks=[];markFrom=null;renderBoard();};$('quick-dots').onclick=()=>changePreference('dots',!prefs.dots);$('quick-eval').onclick=()=>changePreference('evaluation',!prefs.evaluation);
 $('move-history').onclick=e=>{const b=e.target.closest('[data-ply]');if(b)reviewPosition(Number(b.dataset.ply));};
 $('first-btn').onclick=()=>reviewPosition(0);$('previous-btn').onclick=()=>reviewPosition(ply()-1);$('forward-btn').onclick=()=>reviewPosition(ply()+1);$('latest-btn').onclick=()=>reviewPosition(game.history().length);
@@ -232,8 +235,8 @@ setupOffline({onStatus:key=>{offlineState=key;$('offline-status').textContent=t(
 if(document.modelContext?.registerTool){
  const lifecycle=new AbortController();const definitions=[
   {name:'read_practice_position',description:'Read the live and displayed endgame position, preferences, legal moves and progress.',inputSchema:{type:'object',properties:{},additionalProperties:false},annotations:{readOnlyHint:true,untrustedContentHint:false},execute:()=>readState()},
-  {name:'start_endgame_lesson',description:'Start a lesson with a randomized setup different from its last setup in this visit. Choose White or Black; Black mirrors the position.',inputSchema:{type:'object',properties:{lessonId:{type:'string',enum:lessons.map(l=>l.id)},side:{type:'string',enum:['w','b']}},required:['lessonId'],additionalProperties:false},annotations:{readOnlyHint:false,untrustedContentHint:false},execute:input=>{startLesson(input?.lessonId,input?.side||prefs.side);return readState();}},
-  {name:'randomize_endgame_position',description:'Restart the current exercise in a different equivalent starting setup, preserving its goal and chosen colour.',inputSchema:{type:'object',properties:{},additionalProperties:false},annotations:{readOnlyHint:false,untrustedContentHint:false},execute:()=>{randomizePractice();return readState();}},
+  {name:'start_endgame_lesson',description:'Start a lesson with a different verified starting position, avoiding recent positions even across visits. Choose White or Black; Black mirrors the position.',inputSchema:{type:'object',properties:{lessonId:{type:'string',enum:lessons.map(l=>l.id)},side:{type:'string',enum:['w','b']}},required:['lessonId'],additionalProperties:false},annotations:{readOnlyHint:false,untrustedContentHint:false},execute:input=>{startLesson(input?.lessonId,input?.side||prefs.side);return readState();}},
+  {name:'randomize_endgame_position',description:'Start a different verified position for the current endgame, preserving its goal and chosen colour and avoiding recent repeats.',inputSchema:{type:'object',properties:{},additionalProperties:false},annotations:{readOnlyHint:false,untrustedContentHint:false},execute:()=>{randomizePractice();return readState();}},
   {name:'play_chess_move',description:'Play a legal move for the chosen practice side, then wait for the opponent. Historical boards cannot be played.',inputSchema:{type:'object',properties:{from:{type:'string',pattern:'^[a-h][1-8]$'},to:{type:'string',pattern:'^[a-h][1-8]$'},promotion:{type:'string',enum:['q','r','b','n']}},required:['from','to'],additionalProperties:false},annotations:{readOnlyHint:false,untrustedContentHint:false},execute:input=>{if(!input||!/^[a-h][1-8]$/.test(input.from)||!/^[a-h][1-8]$/.test(input.to)||input.promotion&&!['q','r','b','n'].includes(input.promotion))throw Error('Invalid move input');return makeMove(input.from,input.to,input.promotion||'q');}}
  ];for(const tool of definitions)try{Promise.resolve(document.modelContext.registerTool(tool,{signal:lifecycle.signal})).catch(()=>{});}catch{}
  window.addEventListener('pagehide',()=>lifecycle.abort(),{once:true});

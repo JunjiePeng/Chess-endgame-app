@@ -1,0 +1,1865 @@
+[
+  {
+    "lessonId": "rook-underpromotion",
+    "positionId": "s01",
+    "fen": "8/1P6/8/8/8/8/8/5K1k w - - 0 1",
+    "category": "win",
+    "teachingMove": "b7b8r",
+    "preservingMoves": [
+      "b7b8r",
+      "f1f2",
+      "f1e2",
+      "f1e1"
+    ],
+    "dtz": 1,
+    "dtm": 5,
+    "queenPromotion": {
+      "uci": "b7b8q",
+      "category": "draw",
+      "stalemate": true
+    },
+    "rookPromotion": {
+      "uci": "b7b8r",
+      "category": "loss"
+    },
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2F1P6%2F8%2F8%2F8%2F8%2F8%2F5K1k%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:53:43.148Z"
+    }
+  },
+  {
+    "lessonId": "rook-underpromotion",
+    "positionId": "s02",
+    "fen": "8/1P6/8/8/8/8/5K2/7k w - - 0 1",
+    "category": "win",
+    "teachingMove": "b7b8r",
+    "preservingMoves": [
+      "b7b8r",
+      "f2f3",
+      "f2g3",
+      "f2e2",
+      "f2e3",
+      "f2e1",
+      "f2f1"
+    ],
+    "dtz": 1,
+    "dtm": 3,
+    "queenPromotion": {
+      "uci": "b7b8q",
+      "category": "draw",
+      "stalemate": true
+    },
+    "rookPromotion": {
+      "uci": "b7b8r",
+      "category": "loss"
+    },
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2F1P6%2F8%2F8%2F8%2F8%2F5K2%2F7k%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:53:47.072Z"
+    }
+  },
+  {
+    "lessonId": "rook-underpromotion",
+    "positionId": "s03",
+    "fen": "8/1P6/k7/8/K7/8/8/8 w - - 0 1",
+    "category": "win",
+    "teachingMove": "b7b8r",
+    "preservingMoves": [
+      "b7b8r"
+    ],
+    "dtz": 1,
+    "dtm": 13,
+    "queenPromotion": {
+      "uci": "b7b8q",
+      "category": "draw",
+      "stalemate": true
+    },
+    "rookPromotion": {
+      "uci": "b7b8r",
+      "category": "loss"
+    },
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2F1P6%2Fk7%2F8%2FK7%2F8%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:53:49.292Z"
+    }
+  },
+  {
+    "lessonId": "rook-underpromotion",
+    "positionId": "s04",
+    "fen": "8/1P6/k7/8/1K6/8/8/8 w - - 0 1",
+    "category": "win",
+    "teachingMove": "b7b8r",
+    "preservingMoves": [
+      "b7b8r"
+    ],
+    "dtz": 1,
+    "dtm": 13,
+    "queenPromotion": {
+      "uci": "b7b8q",
+      "category": "draw",
+      "stalemate": true
+    },
+    "rookPromotion": {
+      "uci": "b7b8r",
+      "category": "loss"
+    },
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2F1P6%2Fk7%2F8%2F1K6%2F8%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:53:51.215Z"
+    }
+  },
+  {
+    "lessonId": "rook-underpromotion",
+    "positionId": "s05",
+    "fen": "8/k1P5/8/K7/8/8/8/8 w - - 0 1",
+    "category": "win",
+    "teachingMove": "c7c8r",
+    "preservingMoves": [
+      "c7c8r"
+    ],
+    "dtz": 1,
+    "dtm": 11,
+    "queenPromotion": {
+      "uci": "c7c8q",
+      "category": "draw",
+      "stalemate": true
+    },
+    "rookPromotion": {
+      "uci": "c7c8r",
+      "category": "loss"
+    },
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2Fk1P5%2F8%2FK7%2F8%2F8%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:53:53.262Z"
+    }
+  },
+  {
+    "lessonId": "rook-underpromotion",
+    "positionId": "s06",
+    "fen": "8/k1P5/8/1K6/8/8/8/8 w - - 0 1",
+    "category": "win",
+    "teachingMove": "c7c8r",
+    "preservingMoves": [
+      "b5c6",
+      "c7c8r"
+    ],
+    "dtz": 1,
+    "dtm": 7,
+    "queenPromotion": {
+      "uci": "c7c8q",
+      "category": "draw",
+      "stalemate": true
+    },
+    "rookPromotion": {
+      "uci": "c7c8r",
+      "category": "loss"
+    },
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2Fk1P5%2F8%2F1K6%2F8%2F8%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:53:55.092Z"
+    }
+  },
+  {
+    "lessonId": "rook-underpromotion",
+    "positionId": "s07",
+    "fen": "8/k1P5/8/2K5/8/8/8/8 w - - 0 1",
+    "category": "win",
+    "teachingMove": "c7c8r",
+    "preservingMoves": [
+      "c5c6",
+      "c7c8r",
+      "c5d6"
+    ],
+    "dtz": 1,
+    "dtm": 7,
+    "queenPromotion": {
+      "uci": "c7c8q",
+      "category": "draw",
+      "stalemate": true
+    },
+    "rookPromotion": {
+      "uci": "c7c8r",
+      "category": "loss"
+    },
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2Fk1P5%2F8%2F2K5%2F8%2F8%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:53:57.468Z"
+    }
+  },
+  {
+    "lessonId": "knight-underpromotion",
+    "positionId": "s01",
+    "fen": "7b/5P1k/7p/8/4K3/8/6R1/8 w - - 0 1",
+    "category": "win",
+    "teachingMove": "f7f8n",
+    "preservingMoves": [
+      "f7f8n",
+      "f7f8q",
+      "f7f8r",
+      "f7f8b",
+      "e4d5",
+      "e4f5",
+      "g2g8",
+      "g2g1",
+      "g2g3",
+      "e4f4",
+      "g2h2",
+      "g2c2",
+      "g2d2",
+      "g2g4",
+      "g2e2",
+      "e4e3",
+      "e4f3",
+      "g2f2",
+      "g2a2",
+      "g2b2",
+      "g2g6",
+      "g2g5",
+      "e4d3"
+    ],
+    "dtz": 1,
+    "dtm": 1,
+    "knightPromotion": {
+      "uci": "f7f8n",
+      "checkmate": true
+    },
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=7b%2F5P1k%2F7p%2F8%2F4K3%2F8%2F6R1%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:53:59.696Z"
+    }
+  },
+  {
+    "lessonId": "knight-underpromotion",
+    "positionId": "s02",
+    "fen": "7b/5P1k/7p/3K4/8/6R1/8/8 w - - 0 1",
+    "category": "win",
+    "teachingMove": "f7f8n",
+    "preservingMoves": [
+      "f7f8n",
+      "f7f8q",
+      "f7f8r",
+      "f7f8b",
+      "d5d6",
+      "d5e6",
+      "g3g8",
+      "g3g1",
+      "g3g2",
+      "g3g4",
+      "d5e4",
+      "g3f3",
+      "g3a3",
+      "g3b3",
+      "g3c3",
+      "g3e3",
+      "g3d3",
+      "g3h3",
+      "d5c6",
+      "g3g5",
+      "g3g6",
+      "d5c4",
+      "d5c5"
+    ],
+    "dtz": 1,
+    "dtm": 1,
+    "knightPromotion": {
+      "uci": "f7f8n",
+      "checkmate": true
+    },
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=7b%2F5P1k%2F7p%2F3K4%2F8%2F6R1%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:54:02.484Z"
+    }
+  },
+  {
+    "lessonId": "knight-underpromotion",
+    "positionId": "s03",
+    "fen": "7b/5P1k/7p/5K2/8/8/6R1/8 w - - 0 1",
+    "category": "win",
+    "teachingMove": "f7f8n",
+    "preservingMoves": [
+      "f7f8n",
+      "f7f8q",
+      "f7f8r",
+      "f7f8b",
+      "f5e6",
+      "g2g8",
+      "g2g1",
+      "g2g3",
+      "g2g4",
+      "g2a2",
+      "g2b2",
+      "g2c2",
+      "g2d2",
+      "g2e2",
+      "g2f2",
+      "g2h2",
+      "g2g5",
+      "g2g6",
+      "f5e4",
+      "f5f4",
+      "f5g4"
+    ],
+    "dtz": 1,
+    "dtm": 1,
+    "knightPromotion": {
+      "uci": "f7f8n",
+      "checkmate": true
+    },
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=7b%2F5P1k%2F7p%2F5K2%2F8%2F8%2F6R1%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:54:04.791Z"
+    }
+  },
+  {
+    "lessonId": "knight-underpromotion",
+    "positionId": "s04",
+    "fen": "7b/5P1k/2K4p/6R1/8/8/8/8 w - - 0 1",
+    "category": "win",
+    "teachingMove": "f7f8n",
+    "preservingMoves": [
+      "f7f8n",
+      "f7f8q",
+      "g5g8",
+      "c6d6",
+      "c6d7",
+      "g5a5",
+      "g5b5",
+      "g5d5",
+      "g5e5",
+      "g5g1",
+      "g5g2",
+      "g5g3",
+      "g5g4",
+      "g5g6",
+      "c6d5",
+      "g5c5",
+      "g5f5",
+      "c6c7",
+      "c6c5",
+      "c6b5",
+      "c6b6",
+      "c6b7",
+      "g5h5"
+    ],
+    "dtz": 1,
+    "dtm": 1,
+    "knightPromotion": {
+      "uci": "f7f8n",
+      "checkmate": true
+    },
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=7b%2F5P1k%2F2K4p%2F6R1%2F8%2F8%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:54:07.531Z"
+    }
+  },
+  {
+    "lessonId": "knight-underpromotion",
+    "positionId": "s05",
+    "fen": "7b/5P1k/3K2Rp/8/8/8/8/8 w - - 0 1",
+    "category": "win",
+    "teachingMove": "f7f8n",
+    "preservingMoves": [
+      "f7f8n",
+      "f7f8q",
+      "g6g3",
+      "g6g2",
+      "g6g4",
+      "g6h6",
+      "g6g1",
+      "g6g5",
+      "g6g8",
+      "d6e6",
+      "d6d7",
+      "d6e7",
+      "g6f6",
+      "g6e6",
+      "d6d5",
+      "d6c6",
+      "d6c7",
+      "f7f8r",
+      "d6c5"
+    ],
+    "dtz": 1,
+    "dtm": 1,
+    "knightPromotion": {
+      "uci": "f7f8n",
+      "checkmate": true
+    },
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=7b%2F5P1k%2F3K2Rp%2F8%2F8%2F8%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:54:09.651Z"
+    }
+  },
+  {
+    "lessonId": "knight-underpromotion",
+    "positionId": "s06",
+    "fen": "7b/5P1k/7p/6R1/8/4K3/8/8 w - - 0 1",
+    "category": "win",
+    "teachingMove": "f7f8n",
+    "preservingMoves": [
+      "f7f8n",
+      "f7f8q",
+      "g5g8",
+      "g5g1",
+      "g5g2",
+      "g5g3",
+      "e3e4",
+      "g5f5",
+      "g5b5",
+      "g5g4",
+      "g5g6",
+      "e3d3",
+      "e3f3",
+      "g5a5",
+      "g5c5",
+      "g5d5",
+      "g5e5",
+      "e3d2",
+      "e3e2",
+      "e3f2",
+      "g5h5"
+    ],
+    "dtz": 1,
+    "dtm": 1,
+    "knightPromotion": {
+      "uci": "f7f8n",
+      "checkmate": true
+    },
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=7b%2F5P1k%2F7p%2F6R1%2F8%2F4K3%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:54:11.773Z"
+    }
+  },
+  {
+    "lessonId": "knight-underpromotion",
+    "positionId": "s07",
+    "fen": "7b/5P1k/7p/8/1K6/8/8/6R1 w - - 0 1",
+    "category": "win",
+    "teachingMove": "f7f8n",
+    "preservingMoves": [
+      "f7f8n",
+      "f7f8q",
+      "f7f8r",
+      "g1g8",
+      "f7f8b",
+      "b4c4",
+      "b4c5",
+      "b4b5",
+      "g1g2",
+      "g1g3",
+      "b4b3",
+      "b4a4",
+      "b4a5",
+      "g1f1",
+      "g1a1",
+      "g1c1",
+      "g1d1",
+      "g1e1",
+      "g1g4",
+      "g1h1",
+      "g1g5",
+      "g1g6",
+      "b4a3",
+      "g1b1"
+    ],
+    "dtz": 1,
+    "dtm": 1,
+    "knightPromotion": {
+      "uci": "f7f8n",
+      "checkmate": true
+    },
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=7b%2F5P1k%2F7p%2F8%2F1K6%2F8%2F8%2F6R1%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:54:14.034Z"
+    }
+  },
+  {
+    "lessonId": "knight-underpromotion",
+    "positionId": "s08",
+    "fen": "7b/5P1k/7p/8/6R1/8/3K4/8 w - - 0 1",
+    "category": "win",
+    "teachingMove": "f7f8n",
+    "preservingMoves": [
+      "f7f8n",
+      "f7f8q",
+      "f7f8r",
+      "g4g8",
+      "f7f8b",
+      "d2d3",
+      "d2e3",
+      "g4g1",
+      "g4g2",
+      "g4f4",
+      "g4g3",
+      "d2e2",
+      "g4g5",
+      "g4g6",
+      "g4a4",
+      "g4b4",
+      "g4c4",
+      "g4d4",
+      "g4e4",
+      "d2c2",
+      "g4h4",
+      "d2d1",
+      "d2e1",
+      "d2c1"
+    ],
+    "dtz": 1,
+    "dtm": 1,
+    "knightPromotion": {
+      "uci": "f7f8n",
+      "checkmate": true
+    },
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=7b%2F5P1k%2F7p%2F8%2F6R1%2F8%2F3K4%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:54:16.977Z"
+    }
+  },
+  {
+    "lessonId": "rook-pawn-corner",
+    "positionId": "s01",
+    "fen": "8/8/8/8/p7/2k5/8/K7 w - - 0 1",
+    "category": "draw",
+    "teachingMove": "a1b1",
+    "preservingMoves": [
+      "a1b1",
+      "a1a2"
+    ],
+    "dtz": 0,
+    "dtm": 0,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F8%2F8%2Fp7%2F2k5%2F8%2FK7%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:54:19.590Z"
+    }
+  },
+  {
+    "lessonId": "rook-pawn-corner",
+    "positionId": "s02",
+    "fen": "8/8/8/8/2k5/p7/8/K7 w - - 0 1",
+    "category": "draw",
+    "teachingMove": "a1b1",
+    "preservingMoves": [
+      "a1b1",
+      "a1a2"
+    ],
+    "dtz": 0,
+    "dtm": 0,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F8%2F8%2F2k5%2Fp7%2F8%2FK7%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:54:21.851Z"
+    }
+  },
+  {
+    "lessonId": "rook-pawn-corner",
+    "positionId": "s03",
+    "fen": "8/8/8/8/p1k5/8/8/K7 w - - 0 1",
+    "category": "draw",
+    "teachingMove": "a1b1",
+    "preservingMoves": [
+      "a1b1",
+      "a1a2",
+      "a1b2"
+    ],
+    "dtz": 0,
+    "dtm": 0,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F8%2F8%2Fp1k5%2F8%2F8%2FK7%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:54:23.699Z"
+    }
+  },
+  {
+    "lessonId": "rook-pawn-corner",
+    "positionId": "s04",
+    "fen": "8/8/8/8/1k6/p7/8/K7 w - - 0 1",
+    "category": "draw",
+    "teachingMove": "a1b1",
+    "preservingMoves": [
+      "a1b1",
+      "a1a2"
+    ],
+    "dtz": 0,
+    "dtm": 0,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F8%2F8%2F1k6%2Fp7%2F8%2FK7%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:54:25.585Z"
+    }
+  },
+  {
+    "lessonId": "rook-pawn-corner",
+    "positionId": "s05",
+    "fen": "8/8/8/2k5/p7/8/8/K7 w - - 0 1",
+    "category": "draw",
+    "teachingMove": "a1b1",
+    "preservingMoves": [
+      "a1b1",
+      "a1a2",
+      "a1b2"
+    ],
+    "dtz": 0,
+    "dtm": 0,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F8%2F2k5%2Fp7%2F8%2F8%2FK7%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:54:27.422Z"
+    }
+  },
+  {
+    "lessonId": "rook-pawn-corner",
+    "positionId": "s06",
+    "fen": "8/8/8/p7/8/2k5/8/K7 w - - 0 1",
+    "category": "draw",
+    "teachingMove": "a1b1",
+    "preservingMoves": [
+      "a1b1",
+      "a1a2"
+    ],
+    "dtz": 0,
+    "dtm": 0,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F8%2Fp7%2F8%2F2k5%2F8%2FK7%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:54:29.681Z"
+    }
+  },
+  {
+    "lessonId": "rook-pawn-corner",
+    "positionId": "s07",
+    "fen": "8/8/8/8/3k4/p7/8/K7 w - - 0 1",
+    "category": "draw",
+    "teachingMove": "a1b1",
+    "preservingMoves": [
+      "a1b1",
+      "a1a2"
+    ],
+    "dtz": 0,
+    "dtm": 0,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F8%2F8%2F3k4%2Fp7%2F8%2FK7%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:54:31.606Z"
+    }
+  },
+  {
+    "lessonId": "rook-pawn-corner",
+    "positionId": "s08",
+    "fen": "8/8/8/p1k5/8/8/8/K7 w - - 0 1",
+    "category": "draw",
+    "teachingMove": "a1b1",
+    "preservingMoves": [
+      "a1b1",
+      "a1a2",
+      "a1b2"
+    ],
+    "dtz": 0,
+    "dtm": 0,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F8%2Fp1k5%2F8%2F8%2F8%2FK7%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:54:33.467Z"
+    }
+  },
+  {
+    "lessonId": "wrong-bishop",
+    "positionId": "s01",
+    "fen": "8/5b2/8/8/8/p1k5/8/K7 w - - 0 1",
+    "category": "draw",
+    "teachingMove": "a1b1",
+    "preservingMoves": [
+      "a1b1"
+    ],
+    "dtz": 0,
+    "dtm": 0,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2F5b2%2F8%2F8%2F8%2Fp1k5%2F8%2FK7%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:54:35.281Z"
+    }
+  },
+  {
+    "lessonId": "wrong-bishop",
+    "positionId": "s02",
+    "fen": "8/8/8/3b4/2k5/p7/8/K7 w - - 0 1",
+    "category": "draw",
+    "teachingMove": "a1b1",
+    "preservingMoves": [
+      "a1b1",
+      "a1a2"
+    ],
+    "dtz": 0,
+    "dtm": 0,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F8%2F3b4%2F2k5%2Fp7%2F8%2FK7%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:54:37.284Z"
+    }
+  },
+  {
+    "lessonId": "wrong-bishop",
+    "positionId": "s03",
+    "fen": "8/8/8/5b2/p7/2k5/8/K7 w - - 0 1",
+    "category": "draw",
+    "teachingMove": "a1a2",
+    "preservingMoves": [
+      "a1a2"
+    ],
+    "dtz": 0,
+    "dtm": 0,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F8%2F5b2%2Fp7%2F2k5%2F8%2FK7%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:54:39.429Z"
+    }
+  },
+  {
+    "lessonId": "wrong-bishop",
+    "positionId": "s04",
+    "fen": "8/3b4/8/8/pk6/8/8/K7 w - - 0 1",
+    "category": "draw",
+    "teachingMove": "a1b1",
+    "preservingMoves": [
+      "a1b1",
+      "a1a2",
+      "a1b2"
+    ],
+    "dtz": 0,
+    "dtm": 0,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2F3b4%2F8%2F8%2Fpk6%2F8%2F8%2FK7%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:54:41.485Z"
+    }
+  },
+  {
+    "lessonId": "wrong-bishop",
+    "positionId": "s05",
+    "fen": "8/8/8/2k4b/8/p7/8/K7 w - - 0 1",
+    "category": "draw",
+    "teachingMove": "a1b1",
+    "preservingMoves": [
+      "a1b1",
+      "a1a2"
+    ],
+    "dtz": 0,
+    "dtm": 0,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F8%2F2k4b%2F8%2Fp7%2F8%2FK7%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:54:43.329Z"
+    }
+  },
+  {
+    "lessonId": "wrong-bishop",
+    "positionId": "s06",
+    "fen": "8/8/4b3/8/8/p1k5/8/1K6 w - - 0 1",
+    "category": "draw",
+    "teachingMove": "b1a1",
+    "preservingMoves": [
+      "b1a1"
+    ],
+    "dtz": 0,
+    "dtm": 0,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F4b3%2F8%2F8%2Fp1k5%2F8%2F1K6%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:54:45.447Z"
+    }
+  },
+  {
+    "lessonId": "wrong-bishop",
+    "positionId": "s07",
+    "fen": "8/8/8/8/p1k5/3b4/8/K7 w - - 0 1",
+    "category": "draw",
+    "teachingMove": "a1a2",
+    "preservingMoves": [
+      "a1a2",
+      "a1b2"
+    ],
+    "dtz": 0,
+    "dtm": 0,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F8%2F8%2Fp1k5%2F3b4%2F8%2FK7%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:54:47.483Z"
+    }
+  },
+  {
+    "lessonId": "wrong-bishop",
+    "positionId": "s08",
+    "fen": "8/8/8/p7/2bk4/8/8/K7 w - - 0 1",
+    "category": "draw",
+    "teachingMove": "a1b1",
+    "preservingMoves": [
+      "a1b1",
+      "a1b2"
+    ],
+    "dtz": 0,
+    "dtm": 0,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F8%2Fp7%2F2bk4%2F8%2F8%2FK7%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:54:49.317Z"
+    }
+  },
+  {
+    "lessonId": "philidor",
+    "positionId": "s01",
+    "fen": "8/8/8/4p3/4k3/1R6/7r/4K3 w - - 0 1",
+    "category": "draw",
+    "teachingMove": "b3a3",
+    "preservingMoves": [
+      "b3a3",
+      "b3c3",
+      "b3g3",
+      "b3b4",
+      "b3b5",
+      "b3b6",
+      "b3b7",
+      "b3b8",
+      "e1d1",
+      "e1f1"
+    ],
+    "dtz": 0,
+    "dtm": 0,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F8%2F4p3%2F4k3%2F1R6%2F7r%2F4K3%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:58:32.992Z"
+    }
+  },
+  {
+    "lessonId": "philidor",
+    "positionId": "s02",
+    "fen": "8/8/8/4p3/4k3/2R5/r7/4K3 w - - 0 1",
+    "category": "draw",
+    "teachingMove": "c3b3",
+    "preservingMoves": [
+      "c3c1",
+      "c3b3",
+      "c3g3",
+      "c3h3",
+      "c3c4",
+      "c3c5",
+      "c3c6",
+      "c3c7",
+      "c3c8",
+      "e1d1",
+      "e1f1"
+    ],
+    "dtz": 0,
+    "dtm": 0,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F8%2F4p3%2F4k3%2F2R5%2Fr7%2F4K3%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:58:35.907Z"
+    }
+  },
+  {
+    "lessonId": "philidor",
+    "positionId": "s03",
+    "fen": "8/8/8/4p3/4k3/5R2/7r/4K3 w - - 0 1",
+    "category": "draw",
+    "teachingMove": "f3a3",
+    "preservingMoves": [
+      "f3f1",
+      "f3a3",
+      "f3b3",
+      "f3c3",
+      "f3g3",
+      "f3f6",
+      "f3f7",
+      "f3f8"
+    ],
+    "dtz": 0,
+    "dtm": 0,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F8%2F4p3%2F4k3%2F5R2%2F7r%2F4K3%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:58:38.275Z"
+    }
+  },
+  {
+    "lessonId": "philidor",
+    "positionId": "s04",
+    "fen": "8/8/8/4p3/4k3/6R1/r7/4K3 w - - 0 1",
+    "category": "draw",
+    "teachingMove": "g3b3",
+    "preservingMoves": [
+      "g3b3",
+      "g3c3",
+      "g3h3",
+      "g3g4",
+      "g3g5",
+      "g3g6",
+      "g3g7",
+      "g3g8",
+      "e1d1",
+      "e1f1"
+    ],
+    "dtz": 0,
+    "dtm": 0,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F8%2F4p3%2F4k3%2F6R1%2Fr7%2F4K3%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:58:40.360Z"
+    }
+  },
+  {
+    "lessonId": "philidor",
+    "positionId": "s05",
+    "fen": "7r/8/8/4p3/4k3/R7/8/4K3 w - - 0 1",
+    "category": "draw",
+    "teachingMove": "a3b3",
+    "preservingMoves": [
+      "a3b3",
+      "a3c3",
+      "a3g3",
+      "a3a4",
+      "a3a5",
+      "a3a6",
+      "a3a7",
+      "e1d1",
+      "e1f1",
+      "e1d2",
+      "e1e2",
+      "e1f2"
+    ],
+    "dtz": 0,
+    "dtm": 0,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=7r%2F8%2F8%2F4p3%2F4k3%2FR7%2F8%2F4K3%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:58:43.285Z"
+    }
+  },
+  {
+    "lessonId": "philidor",
+    "positionId": "s06",
+    "fen": "8/6r1/4p3/8/4k3/1R6/8/4K3 w - - 0 1",
+    "category": "draw",
+    "teachingMove": "b3a3",
+    "preservingMoves": [
+      "b3b2",
+      "b3a3",
+      "b3c3",
+      "b3h3",
+      "b3b4",
+      "b3b5",
+      "b3b6",
+      "b3b8",
+      "e1d1",
+      "e1f1",
+      "e1d2",
+      "e1e2",
+      "e1f2"
+    ],
+    "dtz": 0,
+    "dtm": 0,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2F6r1%2F4p3%2F8%2F4k3%2F1R6%2F8%2F4K3%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:58:45.868Z"
+    }
+  },
+  {
+    "lessonId": "philidor",
+    "positionId": "s07",
+    "fen": "8/r7/4p3/8/4k3/7R/8/4K3 w - - 0 1",
+    "category": "draw",
+    "teachingMove": "h3b3",
+    "preservingMoves": [
+      "h3b3",
+      "h3c3",
+      "h3g3",
+      "h3h4",
+      "h3h5",
+      "h3h6",
+      "h3h8",
+      "e1d1",
+      "e1f1",
+      "e1d2",
+      "e1e2",
+      "e1f2"
+    ],
+    "dtz": 0,
+    "dtm": 0,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2Fr7%2F4p3%2F8%2F4k3%2F7R%2F8%2F4K3%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:58:49.619Z"
+    }
+  },
+  {
+    "lessonId": "philidor",
+    "positionId": "s08",
+    "fen": "8/7r/8/4p3/5k2/2R5/8/4K3 w - - 0 1",
+    "category": "draw",
+    "teachingMove": "c3a3",
+    "preservingMoves": [
+      "c3a3",
+      "c3b3",
+      "c3d3",
+      "c3c4",
+      "c3c5",
+      "c3c6",
+      "c3c8",
+      "e1d1",
+      "e1f1",
+      "e1d2",
+      "e1e2",
+      "e1f2"
+    ],
+    "dtz": 0,
+    "dtm": 0,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2F7r%2F8%2F4p3%2F5k2%2F2R5%2F8%2F4K3%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:58:51.615Z"
+    }
+  },
+  {
+    "lessonId": "lucena",
+    "positionId": "s01",
+    "fen": "4K3/4P1k1/8/8/8/8/R7/1r6 w - - 0 1",
+    "category": "win",
+    "teachingMove": "a2e2",
+    "preservingMoves": [
+      "a2e2",
+      "a2g2",
+      "a2d2",
+      "a2c2",
+      "a2a3",
+      "a2a8",
+      "a2a4",
+      "a2a5",
+      "e8d7",
+      "e8d8",
+      "a2f2",
+      "a2h2"
+    ],
+    "dtz": 9,
+    "dtm": 35,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=4K3%2F4P1k1%2F8%2F8%2F8%2F8%2FR7%2F1r6%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:59:04.852Z"
+    }
+  },
+  {
+    "lessonId": "lucena",
+    "positionId": "s02",
+    "fen": "4K3/4P1k1/8/8/8/R7/1r6/8 w - - 0 1",
+    "category": "win",
+    "teachingMove": "a3g3",
+    "preservingMoves": [
+      "a3g3",
+      "a3e3",
+      "a3d3",
+      "a3a8",
+      "a3a1",
+      "a3c3",
+      "a3a4",
+      "a3a5",
+      "e8d7",
+      "e8d8",
+      "a3f3",
+      "a3h3"
+    ],
+    "dtz": 9,
+    "dtm": 35,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=4K3%2F4P1k1%2F8%2F8%2F8%2FR7%2F1r6%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:59:07.073Z"
+    }
+  },
+  {
+    "lessonId": "lucena",
+    "positionId": "s03",
+    "fen": "4K3/4P1k1/8/8/R7/8/2r5/8 w - - 0 1",
+    "category": "win",
+    "teachingMove": "a4g4",
+    "preservingMoves": [
+      "a4g4",
+      "a4e4",
+      "a4d4",
+      "a4f4",
+      "a4a8",
+      "a4a1",
+      "a4a3",
+      "a4b4",
+      "a4h4",
+      "a4a5",
+      "a4a6",
+      "a4a7",
+      "e8d7",
+      "e8d8"
+    ],
+    "dtz": 9,
+    "dtm": 35,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=4K3%2F4P1k1%2F8%2F8%2FR7%2F8%2F2r5%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:59:09.093Z"
+    }
+  },
+  {
+    "lessonId": "lucena",
+    "positionId": "s04",
+    "fen": "4K3/4P1k1/8/R7/8/1r6/8/8 w - - 0 1",
+    "category": "win",
+    "teachingMove": "a5e5",
+    "preservingMoves": [
+      "a5e5",
+      "a5a8",
+      "a5a1",
+      "a5a2",
+      "a5a4",
+      "a5c5",
+      "a5d5",
+      "e8d7",
+      "e8d8",
+      "a5f5",
+      "a5g5",
+      "a5h5"
+    ],
+    "dtz": 15,
+    "dtm": 37,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=4K3%2F4P1k1%2F8%2FR7%2F8%2F1r6%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:59:13.952Z"
+    }
+  },
+  {
+    "lessonId": "lucena",
+    "positionId": "s05",
+    "fen": "4K3/4P2k/8/8/8/r7/8/1R6 w - - 0 1",
+    "category": "win",
+    "teachingMove": "b1e1",
+    "preservingMoves": [
+      "b1e1",
+      "b1g1",
+      "b1b8",
+      "b1d1",
+      "b1f1",
+      "b1h1",
+      "b1b4",
+      "b1c1",
+      "b1b2",
+      "e8f7",
+      "e8f8",
+      "e8d7",
+      "e8d8",
+      "b1b6",
+      "b1b5",
+      "b1b7"
+    ],
+    "dtz": 9,
+    "dtm": 31,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=4K3%2F4P2k%2F8%2F8%2F8%2Fr7%2F8%2F1R6%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:59:15.907Z"
+    }
+  },
+  {
+    "lessonId": "lucena",
+    "positionId": "s06",
+    "fen": "4K1k1/4P3/8/8/8/8/1r6/2R5 w - - 0 1",
+    "category": "win",
+    "teachingMove": "c1g1",
+    "preservingMoves": [
+      "c1g1",
+      "c1e1",
+      "c1d1",
+      "c1c4",
+      "c1a1",
+      "c1f1",
+      "c1h1",
+      "c1c3",
+      "e8d7",
+      "e8d8",
+      "c1c5",
+      "c1c8"
+    ],
+    "dtz": 9,
+    "dtm": 31,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=4K1k1%2F4P3%2F8%2F8%2F8%2F8%2F1r6%2F2R5%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:59:17.898Z"
+    }
+  },
+  {
+    "lessonId": "lucena",
+    "positionId": "s07",
+    "fen": "4K2k/4P3/8/8/2r5/8/8/R7 w - - 0 1",
+    "category": "win",
+    "teachingMove": "e8f7",
+    "preservingMoves": [
+      "e8f7",
+      "a1e1",
+      "e8d7",
+      "a1a7",
+      "a1a6",
+      "a1g1",
+      "e8d8",
+      "a1d1",
+      "a1a8",
+      "a1b1",
+      "a1f1",
+      "a1h1",
+      "a1a2",
+      "a1a3",
+      "e8f8",
+      "a1a5"
+    ],
+    "dtz": 7,
+    "dtm": 17,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=4K2k%2F4P3%2F8%2F8%2F2r5%2F8%2F8%2FR7%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:59:21.061Z"
+    }
+  },
+  {
+    "lessonId": "lucena",
+    "positionId": "s08",
+    "fen": "4K3/4P1k1/8/8/1R6/8/r7/8 w - - 0 1",
+    "category": "win",
+    "teachingMove": "b4g4",
+    "preservingMoves": [
+      "b4g4",
+      "b4e4",
+      "b4b8",
+      "b4c4",
+      "b4d4"
+    ],
+    "dtz": 11,
+    "dtm": 35,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=4K3%2F4P1k1%2F8%2F8%2F1R6%2F8%2Fr7%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:59:23.080Z"
+    }
+  },
+  {
+    "lessonId": "rook-behind-pawn",
+    "positionId": "s01",
+    "fen": "6k1/1r6/4PK2/8/8/8/4R3/8 w - - 0 1",
+    "category": "win",
+    "teachingMove": "e6e7",
+    "preservingMoves": [
+      "e6e7",
+      "e2a2",
+      "e2c2",
+      "e2d2",
+      "e2h2"
+    ],
+    "dtz": 1,
+    "dtm": 13,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=6k1%2F1r6%2F4PK2%2F8%2F8%2F8%2F4R3%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:59:25.436Z"
+    }
+  },
+  {
+    "lessonId": "rook-behind-pawn",
+    "positionId": "s02",
+    "fen": "7k/r7/4PK2/8/8/4R3/8/8 w - - 0 1",
+    "category": "win",
+    "teachingMove": "e6e7",
+    "preservingMoves": [
+      "e6e7",
+      "e3e5",
+      "e3e1",
+      "e3e2",
+      "e3e4",
+      "e3f3",
+      "f6g6",
+      "e3b3",
+      "e3c3",
+      "e3d3",
+      "e3g3",
+      "f6f5",
+      "f6g5",
+      "e3h3"
+    ],
+    "dtz": 1,
+    "dtm": 11,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=7k%2Fr7%2F4PK2%2F8%2F8%2F4R3%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:59:27.937Z"
+    }
+  },
+  {
+    "lessonId": "rook-behind-pawn",
+    "positionId": "s03",
+    "fen": "6k1/7r/3KP3/8/8/8/8/4R3 w - - 0 1",
+    "category": "win",
+    "teachingMove": "e6e7",
+    "preservingMoves": [
+      "e6e7",
+      "e1g1",
+      "e1f1",
+      "e1e2",
+      "e1e3",
+      "e1e4",
+      "e1e5",
+      "e1a1",
+      "e1b1",
+      "e1d1",
+      "e1c1"
+    ],
+    "dtz": 1,
+    "dtm": 13,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=6k1%2F7r%2F3KP3%2F8%2F8%2F8%2F8%2F4R3%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:59:29.992Z"
+    }
+  },
+  {
+    "lessonId": "rook-behind-pawn",
+    "positionId": "s04",
+    "fen": "7k/1r6/3KP3/8/8/8/4R3/8 w - - 0 1",
+    "category": "win",
+    "teachingMove": "e6e7",
+    "preservingMoves": [
+      "e6e7",
+      "e2e1",
+      "e2e3",
+      "e2e4",
+      "e2e5",
+      "e2g2",
+      "e2c2",
+      "d6c5",
+      "d6d5",
+      "d6c6",
+      "e2d2",
+      "e2a2",
+      "e2f2",
+      "e2h2"
+    ],
+    "dtz": 1,
+    "dtm": 19,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=7k%2F1r6%2F3KP3%2F8%2F8%2F8%2F4R3%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:59:32.052Z"
+    }
+  },
+  {
+    "lessonId": "rook-behind-pawn",
+    "positionId": "s05",
+    "fen": "6k1/1r6/4P3/5K2/8/8/8/4R3 w - - 0 1",
+    "category": "win",
+    "teachingMove": "e6e7",
+    "preservingMoves": [
+      "e6e7"
+    ],
+    "dtz": 1,
+    "dtm": 15,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=6k1%2F1r6%2F4P3%2F5K2%2F8%2F8%2F8%2F4R3%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:59:34.582Z"
+    }
+  },
+  {
+    "lessonId": "rook-behind-pawn",
+    "positionId": "s06",
+    "fen": "7k/2r5/4P3/3K4/8/8/4R3/8 w - - 0 1",
+    "category": "win",
+    "teachingMove": "e6e7",
+    "preservingMoves": [
+      "e6e7",
+      "d5d6",
+      "e2e1",
+      "e2e3",
+      "e2e4",
+      "e2e5",
+      "d5e5",
+      "e2g2",
+      "d5d4",
+      "e2a2",
+      "e2d2"
+    ],
+    "dtz": 1,
+    "dtm": 21,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=7k%2F2r5%2F4P3%2F3K4%2F8%2F8%2F4R3%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:59:37.584Z"
+    }
+  },
+  {
+    "lessonId": "rook-behind-pawn",
+    "positionId": "s07",
+    "fen": "7k/1r6/4PK2/8/4R3/8/8/8 w - - 0 1",
+    "category": "win",
+    "teachingMove": "e6e7",
+    "preservingMoves": [
+      "e6e7",
+      "e4e5",
+      "e4e1",
+      "e4e2",
+      "e4e3",
+      "e4d4",
+      "e4g4",
+      "e4f4",
+      "f6g6",
+      "e4a4",
+      "e4c4",
+      "f6f5",
+      "f6g5",
+      "e4h4"
+    ],
+    "dtz": 1,
+    "dtm": 11,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=7k%2F1r6%2F4PK2%2F8%2F4R3%2F8%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:59:40.496Z"
+    }
+  },
+  {
+    "lessonId": "rook-behind-pawn",
+    "positionId": "s08",
+    "fen": "6k1/r7/3KP3/8/8/4R3/8/8 w - - 0 1",
+    "category": "win",
+    "teachingMove": "e6e7",
+    "preservingMoves": [
+      "e6e7",
+      "e3c3"
+    ],
+    "dtz": 1,
+    "dtm": 21,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=6k1%2Fr7%2F3KP3%2F8%2F8%2F4R3%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:59:42.682Z"
+    }
+  },
+  {
+    "lessonId": "stop-the-passer",
+    "positionId": "s01",
+    "fen": "8/8/8/8/8/4K1kp/8/1R6 w - - 0 1",
+    "category": "win",
+    "teachingMove": "b1g1",
+    "preservingMoves": [
+      "b1g1"
+    ],
+    "dtz": 9,
+    "dtm": 29,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F8%2F8%2F8%2F4K1kp%2F8%2F1R6%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:59:48.033Z"
+    }
+  },
+  {
+    "lessonId": "stop-the-passer",
+    "positionId": "s02",
+    "fen": "8/8/8/8/8/6kp/4K3/R7 w - - 0 1",
+    "category": "win",
+    "teachingMove": "a1g1",
+    "preservingMoves": [
+      "a1g1",
+      "a1a5",
+      "a1a6",
+      "a1a7",
+      "a1a8",
+      "e2f1"
+    ],
+    "dtz": 9,
+    "dtm": 35,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F8%2F8%2F8%2F6kp%2F4K3%2FR7%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:59:52.416Z"
+    }
+  },
+  {
+    "lessonId": "stop-the-passer",
+    "positionId": "s03",
+    "fen": "8/8/8/8/6k1/4K2p/8/2R5 w - - 0 1",
+    "category": "win",
+    "teachingMove": "c1g1",
+    "preservingMoves": [
+      "c1g1",
+      "c1h1",
+      "e3f2",
+      "c1e1",
+      "c1c7",
+      "c1c8",
+      "c1a1",
+      "c1b1",
+      "c1d1",
+      "c1f1",
+      "c1c6",
+      "e3e2"
+    ],
+    "dtz": 7,
+    "dtm": 31,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F8%2F8%2F6k1%2F4K2p%2F8%2F2R5%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T09:00:28.150Z"
+    }
+  },
+  {
+    "lessonId": "stop-the-passer",
+    "positionId": "s04",
+    "fen": "8/8/8/8/4K1kp/8/8/1R6 w - - 0 1",
+    "category": "win",
+    "teachingMove": "b1g1",
+    "preservingMoves": [
+      "b1g1",
+      "b1b7",
+      "b1b8",
+      "e4e3",
+      "b1a1",
+      "b1c1",
+      "b1d1",
+      "b1e1",
+      "b1b6",
+      "b1h1",
+      "b1f1",
+      "e4d3",
+      "e4d4"
+    ],
+    "dtz": 7,
+    "dtm": 25,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F8%2F8%2F4K1kp%2F8%2F8%2F1R6%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T09:00:30.534Z"
+    }
+  },
+  {
+    "lessonId": "stop-the-passer",
+    "positionId": "s05",
+    "fen": "8/8/8/8/7p/6k1/4K3/1R6 w - - 0 1",
+    "category": "win",
+    "teachingMove": "e2e3",
+    "preservingMoves": [
+      "e2e3",
+      "b1g1",
+      "e2f1",
+      "b1b3",
+      "b1b6",
+      "b1b7",
+      "b1b8",
+      "b1a1",
+      "b1c1",
+      "b1d1",
+      "b1f1",
+      "b1h1",
+      "b1b5",
+      "b1b4",
+      "b1b2",
+      "e2e1",
+      "b1e1"
+    ],
+    "dtz": 5,
+    "dtm": 33,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F8%2F8%2F7p%2F6k1%2F4K3%2F1R6%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T09:00:32.374Z"
+    }
+  },
+  {
+    "lessonId": "stop-the-passer",
+    "positionId": "s06",
+    "fen": "8/8/8/8/6k1/3K3p/8/2R5 w - - 0 1",
+    "category": "win",
+    "teachingMove": "d3e3",
+    "preservingMoves": [
+      "d3e3",
+      "d3e2"
+    ],
+    "dtz": 11,
+    "dtm": 35,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F8%2F8%2F6k1%2F3K3p%2F8%2F2R5%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T09:00:35.121Z"
+    }
+  },
+  {
+    "lessonId": "stop-the-passer",
+    "positionId": "s07",
+    "fen": "8/8/8/8/5K2/7k/7p/R7 w - - 0 1",
+    "category": "win",
+    "teachingMove": "f4f3",
+    "preservingMoves": [
+      "f4f3"
+    ],
+    "dtz": 5,
+    "dtm": 27,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F8%2F8%2F5K2%2F7k%2F7p%2FR7%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T09:00:39.853Z"
+    }
+  },
+  {
+    "lessonId": "stop-the-passer",
+    "positionId": "s08",
+    "fen": "8/8/8/8/8/4K1kp/8/2R5 w - - 0 1",
+    "category": "win",
+    "teachingMove": "c1g1",
+    "preservingMoves": [
+      "c1g1"
+    ],
+    "dtz": 9,
+    "dtm": 29,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F8%2F8%2F8%2F4K1kp%2F8%2F2R5%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T09:03:38.760Z"
+    }
+  },
+  {
+    "lessonId": "defend-opposition",
+    "positionId": "s01",
+    "fen": "8/8/8/4p3/4k3/8/8/3K4 w - - 0 1",
+    "category": "draw",
+    "teachingMove": "d1e2",
+    "preservingMoves": [
+      "d1e2"
+    ],
+    "dtz": 0,
+    "dtm": 0,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F8%2F4p3%2F4k3%2F8%2F8%2F3K4%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:56:50.899Z"
+    }
+  },
+  {
+    "lessonId": "defend-opposition",
+    "positionId": "s02",
+    "fen": "8/8/8/4p3/4k3/8/3K4/8 w - - 0 1",
+    "category": "draw",
+    "teachingMove": "d2e2",
+    "preservingMoves": [
+      "d2e2"
+    ],
+    "dtz": 0,
+    "dtm": 0,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F8%2F4p3%2F4k3%2F8%2F3K4%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:56:53.043Z"
+    }
+  },
+  {
+    "lessonId": "defend-opposition",
+    "positionId": "s03",
+    "fen": "8/4p3/3k4/8/8/3K4/8/8 w - - 0 1",
+    "category": "draw",
+    "teachingMove": "d3d4",
+    "preservingMoves": [
+      "d3d4"
+    ],
+    "dtz": 0,
+    "dtm": 0,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2F4p3%2F3k4%2F8%2F8%2F3K4%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:57:19.831Z"
+    }
+  },
+  {
+    "lessonId": "defend-opposition",
+    "positionId": "s04",
+    "fen": "8/8/4p3/3k4/8/8/4K3/8 w - - 0 1",
+    "category": "draw",
+    "teachingMove": "e2d3",
+    "preservingMoves": [
+      "e2d3"
+    ],
+    "dtz": 0,
+    "dtm": 0,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F4p3%2F3k4%2F8%2F8%2F4K3%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:55:35.407Z"
+    }
+  },
+  {
+    "lessonId": "defend-opposition",
+    "positionId": "s05",
+    "fen": "8/8/8/4p3/3k4/8/4K3/8 w - - 0 1",
+    "category": "draw",
+    "teachingMove": "e2d2",
+    "preservingMoves": [
+      "e2d2"
+    ],
+    "dtz": 0,
+    "dtm": 0,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F8%2F4p3%2F3k4%2F8%2F4K3%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T08:57:40.340Z"
+    }
+  },
+  {
+    "lessonId": "defend-opposition",
+    "positionId": "s06",
+    "fen": "8/8/8/4p3/2k5/8/3K4/8 w - - 0 1",
+    "category": "draw",
+    "teachingMove": "d2c2",
+    "preservingMoves": [
+      "d2c2",
+      "d2e2",
+      "d2e3"
+    ],
+    "dtz": 0,
+    "dtm": 0,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F8%2F4p3%2F2k5%2F8%2F3K4%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T09:00:41.813Z"
+    }
+  },
+  {
+    "lessonId": "defend-opposition",
+    "positionId": "s07",
+    "fen": "8/8/8/2k1p3/8/8/3K4/8 w - - 0 1",
+    "category": "draw",
+    "teachingMove": "d2c3",
+    "preservingMoves": [
+      "d2c1",
+      "d2d1",
+      "d2e1",
+      "d2e2",
+      "d2c3",
+      "d2d3",
+      "d2e3"
+    ],
+    "dtz": 0,
+    "dtm": 0,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F8%2F2k1p3%2F8%2F8%2F3K4%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T09:00:44.151Z"
+    }
+  },
+  {
+    "lessonId": "defend-opposition",
+    "positionId": "s08",
+    "fen": "8/8/8/2k1p3/8/3K4/8/8 w - - 0 1",
+    "category": "draw",
+    "teachingMove": "d3c3",
+    "preservingMoves": [
+      "d3e2",
+      "d3c3",
+      "d3e3",
+      "d3e4"
+    ],
+    "dtz": 0,
+    "dtm": 0,
+    "provenance": {
+      "provider": "Lichess tablebase",
+      "source": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F8%2F2k1p3%2F8%2F3K4%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "queriedAt": "2026-09-24T09:00:46.403Z"
+    }
+  }
+]

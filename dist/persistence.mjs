@@ -23,6 +23,9 @@ export function mergeChanges(base,local,remote){
   const added=count-(base.activity[day]||0);
   if(added>0)merged.activity[day]=(merged.activity[day]||0)+added;
  }
+ for(const [id,order] of Object.entries(local.practiceOrder||{})){
+  if(!same(order,base.practiceOrder?.[id])){merged.practiceOrder??={};merged.practiceOrder[id]=copy(order);}
+ }
  if(!same(base.session,local.session))merged.session=copy(local.session);
  return merged;
 }

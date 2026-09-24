@@ -2,6 +2,7 @@ import {Chess} from './vendor/chess.mjs';
 import {lessons} from './lessons.mjs';
 import {assessOutcome} from './outcome.mjs';
 import {variantIds,variantFen} from './variants.mjs';
+import {getPosition,validatePracticeOrder} from './positions.mjs';
 export const KEY='endgame-practice-v2';
 export const defaults={language:'en',sound:true,skill:20,side:'w',dots:true,coordinates:true,arrows:true,animation:true,evaluation:false,libraryGroup:'all',libraryLevel:'all',libraryStatus:'all'};
 const ids=new Set(lessons.map(l=>l.id));
@@ -17,9 +18,9 @@ export function normalizePreferences(input={}){
   if(['all','todo','done'].includes(input.libraryStatus))p.libraryStatus=input.libraryStatus;
   return p;
 }
-export function initialFen(lesson,side='w',variant=0){
+export function initialFen(lesson,side='w',variant=0,positionId='base'){
   if(!variantIds(lesson).includes(variant))throw Error('Invalid position variant');
-  const fen=variantFen(lesson.fen,variant);
+  const fen=variantFen(getPosition(lesson,positionId).fen,variant);
   if(side==='w')return fen;
   const parts=fen.split(' ');
   parts[0]=parts[0].split('/').reverse().join('/').replace(/[a-z]/gi,c=>c===c.toUpperCase()?c.toLowerCase():c.toUpperCase());
@@ -46,7 +47,8 @@ export function validateData(raw){
   if(raw.session){
     const s=raw.session,lesson=lessons.find(l=>l.id===s.lessonId),variant=s.variant===undefined?0:s.variant;
     if(!lesson||!['w','b'].includes(s.side)||!Array.isArray(s.moves)||!variantIds(lesson).includes(variant))throw Error('Invalid saved position');
-    const g=new Chess(initialFen(lesson,s.side,variant));
+    const positionId=s.positionId===undefined?'base':s.positionId;
+    const g=new Chess(initialFen(lesson,s.side,variant,positionId));
     // Every 100 reversible plies ends the game. Each original pawn can advance
     // at most six times, and each non-king piece can be captured only once.
     const pieces=g.board().flat().filter(Boolean),maxPlies=100*(1+pieces.filter(p=>p.type==='p').length*6+pieces.filter(p=>p.type!=='k').length);
@@ -54,12 +56,14 @@ export function validateData(raw){
     for(const u of s.moves){if(typeof u!=='string'||!/^([a-h][1-8]){2}[qrbn]?$/.test(u))throw Error('Invalid saved move');g.move({from:u.slice(0,2),to:u.slice(2,4),promotion:u[4]||'q'});}
     session={lessonId:s.lessonId,side:s.side,moves:[...s.moves],flipped:!!s.flipped,finished:!!s.finished,success:!!s.success,usedHelp:!!s.usedHelp,credited:!!s.credited,attemptRecorded:!!s.attemptRecorded};
     if(variant)session.variant=variant;
+    if(positionId!=='base')session.positionId=positionId;
     const record=progress[`${s.lessonId}:${s.side}`],result=assessOutcome(g,lesson,s.side);
     if(session.finished!==result.finished||session.success!==result.success||
       (s.moves.length&&!session.attemptRecorded)||(session.attemptRecorded&&!record?.attempts)||
       (session.credited&&!record?.wins)||(session.success&&!session.credited))throw Error('Invalid result');
   }
-  return {app:'endgame-practice',version:2,preferences:prefs,progress,activity,session};
+  const practiceOrder=validatePracticeOrder(raw.practiceOrder,lessons);
+  return {app:'endgame-practice',version:2,preferences:prefs,progress,activity,session,...(Object.keys(practiceOrder).length?{practiceOrder}:{})};
 }
 export function freshData(){return {app:'endgame-practice',version:2,preferences:{...defaults},progress:{},activity:{},session:null};}
 export function loadData(storage){
@@ -70,7 +74,9 @@ export function loadData(storage){
       try{return validateData(parsed);}catch{
         // A damaged autosaved position must not discard otherwise valid results.
         // Manual imports still use strict validation of the complete backup.
-        return validateData({...parsed,session:null});
+        let practiceOrder;try{practiceOrder=validatePracticeOrder(parsed.practiceOrder,lessons);}catch{}
+        try{return validateData({...parsed,practiceOrder});}
+        catch{return validateData({...parsed,session:null,practiceOrder});}
       }
     }
   }catch{}

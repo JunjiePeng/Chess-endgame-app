@@ -1,0 +1,1530 @@
+[
+  {
+    "lessonId": "opposition",
+    "positionId": "p01",
+    "fen": "8/8/2k5/8/2K5/8/2P5/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "c2c3",
+      "c4b4",
+      "c4d4"
+    ],
+    "hintMove": "c2c3",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F2k5%2F8%2F2K5%2F8%2F2P5%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "opposition",
+    "positionId": "p02",
+    "fen": "8/3k4/8/3K4/8/8/3P4/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "d2d4",
+      "d2d3",
+      "d5c5",
+      "d5e5",
+      "d5d4",
+      "d5c4",
+      "d5e4"
+    ],
+    "hintMove": "d2d4",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=8%2F3k4%2F8%2F3K4%2F8%2F8%2F3P4%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "opposition",
+    "positionId": "p03",
+    "fen": "1k6/8/1K6/8/8/1P6/8/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "b3b4",
+      "b6a6",
+      "b6c6",
+      "b6b5",
+      "b6a5",
+      "b6c5"
+    ],
+    "hintMove": "b3b4",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=1k6%2F8%2F1K6%2F8%2F8%2F1P6%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "opposition",
+    "positionId": "p04",
+    "fen": "2k5/8/2K5/8/2P5/8/8/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "c4c5",
+      "c6b6",
+      "c6d6"
+    ],
+    "hintMove": "c4c5",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=2k5%2F8%2F2K5%2F8%2F2P5%2F8%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "opposition",
+    "positionId": "p05",
+    "fen": "4k3/8/4K3/8/8/8/4P3/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "e2e4",
+      "e2e3",
+      "e6d6",
+      "e6f6",
+      "e6e5",
+      "e6d5",
+      "e6f5"
+    ],
+    "hintMove": "e2e4",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=4k3%2F8%2F4K3%2F8%2F8%2F8%2F4P3%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "opposition",
+    "positionId": "p06",
+    "fen": "8/6k1/8/6K1/8/6P1/8/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "g3g4",
+      "g5f5",
+      "g5h5"
+    ],
+    "hintMove": "g3g4",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=8%2F6k1%2F8%2F6K1%2F8%2F6P1%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "opposition",
+    "positionId": "p07",
+    "fen": "3k4/8/3K4/8/8/3P4/8/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "d3d4",
+      "d6e6",
+      "d6c6",
+      "d6d5",
+      "d6c5",
+      "d6e5"
+    ],
+    "hintMove": "d3d4",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=3k4%2F8%2F3K4%2F8%2F8%2F3P4%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "opposition",
+    "positionId": "p08",
+    "fen": "8/2k5/8/2K5/8/2P5/8/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "c3c4",
+      "c5b5",
+      "c5d5"
+    ],
+    "hintMove": "c3c4",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=8%2F2k5%2F8%2F2K5%2F8%2F2P5%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "passed-pawn",
+    "positionId": "p01",
+    "fen": "7k/8/8/8/8/8/P5K1/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "a2a4",
+      "g2f2",
+      "g2f3",
+      "g2g3",
+      "a2a3",
+      "g2f1",
+      "g2g1",
+      "g2h2",
+      "g2h3",
+      "g2h1"
+    ],
+    "hintMove": "a2a4",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=7k%2F8%2F8%2F8%2F8%2F8%2FP5K1%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "passed-pawn",
+    "positionId": "p02",
+    "fen": "8/6k1/8/8/8/P7/7K/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "a3a4"
+    ],
+    "hintMove": "a3a4",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=8%2F6k1%2F8%2F8%2F8%2FP7%2F7K%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "passed-pawn",
+    "positionId": "p03",
+    "fen": "8/8/7k/8/1P6/8/6K1/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "b4b5",
+      "g2f2",
+      "g2f3",
+      "g2f1",
+      "g2g1",
+      "g2g3",
+      "g2h1",
+      "g2h2",
+      "g2h3"
+    ],
+    "hintMove": "b4b5",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F7k%2F8%2F1P6%2F8%2F6K1%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "passed-pawn",
+    "positionId": "p04",
+    "fen": "6k1/8/8/2P5/8/7K/8/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "c5c6"
+    ],
+    "hintMove": "c5c6",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=6k1%2F8%2F8%2F2P5%2F8%2F7K%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "passed-pawn",
+    "positionId": "p05",
+    "fen": "8/k7/8/8/5P2/8/K7/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "f4f5"
+    ],
+    "hintMove": "f4f5",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=8%2Fk7%2F8%2F8%2F5P2%2F8%2FK7%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "passed-pawn",
+    "positionId": "p06",
+    "fen": "8/2k5/7P/8/8/8/2K5/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "h6h7",
+      "c2d3",
+      "c2d2",
+      "c2b3",
+      "c2c3",
+      "c2b1",
+      "c2c1",
+      "c2d1",
+      "c2b2"
+    ],
+    "hintMove": "h6h7",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=8%2F2k5%2F7P%2F8%2F8%2F8%2F2K5%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "passed-pawn",
+    "positionId": "p07",
+    "fen": "8/7k/8/8/8/1P6/5K2/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "b3b4",
+      "f2e3",
+      "f2e2",
+      "f2f3",
+      "f2e1",
+      "f2f1"
+    ],
+    "hintMove": "b3b4",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=8%2F7k%2F8%2F8%2F8%2F1P6%2F5K2%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "passed-pawn",
+    "positionId": "p08",
+    "fen": "1k6/8/8/6P1/8/8/1K6/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "g5g6",
+      "b2c2",
+      "b2c3",
+      "b2b1",
+      "b2c1",
+      "b2b3",
+      "b2a1",
+      "b2a2",
+      "b2a3"
+    ],
+    "hintMove": "g5g6",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=1k6%2F8%2F8%2F6P1%2F8%2F8%2F1K6%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "key-squares",
+    "positionId": "p01",
+    "fen": "8/8/5k2/8/2K5/8/3P4/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "d2d4",
+      "c4c5",
+      "c4d5",
+      "d2d3",
+      "c4b4",
+      "c4d4",
+      "c4b5",
+      "c4b3",
+      "c4c3",
+      "c4d3"
+    ],
+    "hintMove": "d2d4",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F5k2%2F8%2F2K5%2F8%2F3P4%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "key-squares",
+    "positionId": "p02",
+    "fen": "8/6k1/8/4K3/8/4P3/8/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "e3e4",
+      "e5e6",
+      "e5d6",
+      "e5d5",
+      "e5f5",
+      "e5d4",
+      "e5e4"
+    ],
+    "hintMove": "e3e4",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=8%2F6k1%2F8%2F4K3%2F8%2F4P3%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "key-squares",
+    "positionId": "p03",
+    "fen": "4k3/8/2K5/8/3P4/8/8/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "c6c7",
+      "d4d5",
+      "c6d6",
+      "c6c5"
+    ],
+    "hintMove": "d4d5",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=4k3%2F8%2F2K5%2F8%2F3P4%2F8%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "key-squares",
+    "positionId": "p04",
+    "fen": "7k/8/5K2/8/5P2/8/8/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "f4f5",
+      "f6e7",
+      "f6f7",
+      "f6e6",
+      "f6g6",
+      "f6e5",
+      "f6f5"
+    ],
+    "hintMove": "f4f5",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=7k%2F8%2F5K2%2F8%2F5P2%2F8%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "key-squares",
+    "positionId": "p05",
+    "fen": "8/3k4/8/1K6/8/2P5/8/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "c3c4",
+      "b5b6",
+      "b5c5",
+      "b5b4"
+    ],
+    "hintMove": "c3c4",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=8%2F3k4%2F8%2F1K6%2F8%2F2P5%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "key-squares",
+    "positionId": "p06",
+    "fen": "8/8/2k5/8/4K3/8/4P3/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "e4e5",
+      "e4f5",
+      "e2e3",
+      "e4f4",
+      "e4d4",
+      "e4e3",
+      "e4f3"
+    ],
+    "hintMove": "e2e3",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F2k5%2F8%2F4K3%2F8%2F4P3%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "key-squares",
+    "positionId": "p07",
+    "fen": "5k2/8/3K4/3P4/8/8/8/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "d6e6",
+      "d6c6",
+      "d6c7",
+      "d6d7",
+      "d6c5"
+    ],
+    "hintMove": "d6e6",
+    "dtz": 3,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=5k2%2F8%2F3K4%2F3P4%2F8%2F8%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "key-squares",
+    "positionId": "p08",
+    "fen": "4k3/8/6K1/5P2/8/8/8/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "f5f6",
+      "g6g7",
+      "g6f6"
+    ],
+    "hintMove": "f5f6",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=4k3%2F8%2F6K1%2F5P2%2F8%2F8%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "king-escort",
+    "positionId": "p01",
+    "fen": "1k6/8/1K6/1P6/8/8/8/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "b6a6",
+      "b6c6"
+    ],
+    "hintMove": "b6a6",
+    "dtz": 3,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=1k6%2F8%2F1K6%2F1P6%2F8%2F8%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "king-escort",
+    "positionId": "p02",
+    "fen": "3k4/8/4K3/4P3/8/8/8/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "e6f7",
+      "e6d6",
+      "e6f6"
+    ],
+    "hintMove": "e6f7",
+    "dtz": 3,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=3k4%2F8%2F4K3%2F4P3%2F8%2F8%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "king-escort",
+    "positionId": "p03",
+    "fen": "6k1/8/5K2/5P2/8/8/8/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "f6e7",
+      "f6e6",
+      "f6g6"
+    ],
+    "hintMove": "f6e7",
+    "dtz": 3,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=6k1%2F8%2F5K2%2F5P2%2F8%2F8%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "king-escort",
+    "positionId": "p04",
+    "fen": "2k5/8/8/2K5/2P5/8/8/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "c5c6",
+      "c5b6",
+      "c5d6"
+    ],
+    "hintMove": "c5b6",
+    "dtz": 3,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=2k5%2F8%2F8%2F2K5%2F2P5%2F8%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "king-escort",
+    "positionId": "p05",
+    "fen": "8/5k2/8/3K4/3P4/8/8/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "d5d6",
+      "d5c6",
+      "d5c5",
+      "d5c4"
+    ],
+    "hintMove": "d5c6",
+    "dtz": 3,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=8%2F5k2%2F8%2F3K4%2F3P4%2F8%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "king-escort",
+    "positionId": "p06",
+    "fen": "4k3/8/5K2/4P3/8/8/8/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "f6e6"
+    ],
+    "hintMove": "f6e6",
+    "dtz": 5,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=4k3%2F8%2F5K2%2F4P3%2F8%2F8%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "king-escort",
+    "positionId": "p07",
+    "fen": "5k2/8/3K4/4P3/8/8/8/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "e5e6",
+      "d6d7",
+      "d6e6"
+    ],
+    "hintMove": "d6e6",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=5k2%2F8%2F3K4%2F4P3%2F8%2F8%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "king-escort",
+    "positionId": "p08",
+    "fen": "8/3k4/8/1K6/1P6/8/8/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "b5b6",
+      "b5a6",
+      "b5a5",
+      "b5a4"
+    ],
+    "hintMove": "b5a6",
+    "dtz": 3,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=8%2F3k4%2F8%2F1K6%2F1P6%2F8%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "connected-passers",
+    "positionId": "p01",
+    "fen": "8/8/5k2/8/1PP5/8/7K/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "b4b5",
+      "c4c5",
+      "h2g3",
+      "h2g1",
+      "h2g2",
+      "h2h3",
+      "h2h1"
+    ],
+    "hintMove": "b4b5",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F5k2%2F8%2F1PP5%2F8%2F7K%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "connected-passers",
+    "positionId": "p02",
+    "fen": "8/8/1k6/4PP2/8/8/K7/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "f5f6",
+      "e5e6",
+      "a2a3",
+      "a2b3",
+      "a2b2",
+      "a2a1",
+      "a2b1"
+    ],
+    "hintMove": "f5f6",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F1k6%2F4PP2%2F8%2F8%2FK7%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "connected-passers",
+    "positionId": "p03",
+    "fen": "8/6k1/2PP4/8/8/8/8/7K w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "c6c7",
+      "d6d7",
+      "h1g1",
+      "h1g2",
+      "h1h2"
+    ],
+    "hintMove": "c6c7",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=8%2F6k1%2F2PP4%2F8%2F8%2F8%2F8%2F7K%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "connected-passers",
+    "positionId": "p04",
+    "fen": "8/8/1k6/8/5PP1/K7/8/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "g4g5",
+      "f4f5",
+      "a3b3",
+      "a3b4",
+      "a3a2",
+      "a3b2",
+      "a3a4"
+    ],
+    "hintMove": "g4g5",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F1k6%2F8%2F5PP1%2FK7%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "connected-passers",
+    "positionId": "p05",
+    "fen": "8/3k4/PP6/8/8/8/3K4/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "a6a7",
+      "b6b7",
+      "d2c3",
+      "d2d3",
+      "d2e3",
+      "d2c2",
+      "d2e2",
+      "d2c1",
+      "d2d1",
+      "d2e1"
+    ],
+    "hintMove": "a6a7",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=8%2F3k4%2FPP6%2F8%2F8%2F8%2F3K4%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "connected-passers",
+    "positionId": "p06",
+    "fen": "8/4k3/2P5/1P6/8/7K/8/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "b5b6",
+      "c6c7",
+      "h3g3",
+      "h3g4",
+      "h3g2",
+      "h3h2",
+      "h3h4"
+    ],
+    "hintMove": "b5b6",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=8%2F4k3%2F2P5%2F1P6%2F8%2F7K%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "connected-passers",
+    "positionId": "p07",
+    "fen": "8/2k5/6P1/5P2/8/8/1K6/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "g6g7",
+      "b2c2",
+      "b2c3",
+      "f5f6",
+      "b2b1",
+      "b2c1",
+      "b2a3",
+      "b2b3",
+      "b2a1",
+      "b2a2"
+    ],
+    "hintMove": "g6g7",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=8%2F2k5%2F6P1%2F5P2%2F8%2F8%2F1K6%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "connected-passers",
+    "positionId": "p08",
+    "fen": "8/8/7k/5P2/4P3/3K4/8/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "d3d4",
+      "e4e5",
+      "d3c4",
+      "f5f6",
+      "d3c3",
+      "d3e3",
+      "d3c2",
+      "d3d2",
+      "d3e2"
+    ],
+    "hintMove": "e4e5",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F7k%2F5P2%2F4P3%2F3K4%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "protected-passer",
+    "positionId": "p01",
+    "fen": "8/8/4k3/1P6/2P5/4K3/8/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "c4c5",
+      "b5b6",
+      "e3d4",
+      "e3e4",
+      "e3d3",
+      "e3f3",
+      "e3f4",
+      "e3d2",
+      "e3e2",
+      "e3f2"
+    ],
+    "hintMove": "e3d4",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F4k3%2F1P6%2F2P5%2F4K3%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "protected-passer",
+    "positionId": "p02",
+    "fen": "8/5k2/8/5P2/2K1P3/8/8/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "e4e5",
+      "c4d5",
+      "c4d4",
+      "c4c5",
+      "c4b3",
+      "c4c3",
+      "c4d3",
+      "c4b4",
+      "c4b5",
+      "f5f6"
+    ],
+    "hintMove": "c4d5",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=8%2F5k2%2F8%2F5P2%2F2K1P3%2F8%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "protected-passer",
+    "positionId": "p03",
+    "fen": "8/6k1/2P5/3P4/3K4/8/8/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "c6c7",
+      "d4e5",
+      "d5d6",
+      "d4e4",
+      "d4c3",
+      "d4d3",
+      "d4e3",
+      "d4c4",
+      "d4c5"
+    ],
+    "hintMove": "d4e5",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=8%2F6k1%2F2P5%2F3P4%2F3K4%2F8%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "protected-passer",
+    "positionId": "p04",
+    "fen": "8/3k4/6P1/5P2/4K3/8/8/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "f5f6",
+      "g6g7",
+      "e4e5",
+      "e4d3",
+      "e4e3",
+      "e4d4",
+      "e4f4",
+      "e4d5",
+      "e4f3"
+    ],
+    "hintMove": "e4e5",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=8%2F3k4%2F6P1%2F5P2%2F4K3%2F8%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "protected-passer",
+    "positionId": "p05",
+    "fen": "8/8/1k6/8/5P2/3KP3/8/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "d3d4",
+      "d3e4",
+      "e3e4",
+      "f4f5",
+      "d3c4",
+      "d3c3",
+      "d3c2",
+      "d3d2",
+      "d3e2"
+    ],
+    "hintMove": "d3d4",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F1k6%2F8%2F5P2%2F3KP3%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "protected-passer",
+    "positionId": "p06",
+    "fen": "8/7k/4P3/2K2P2/8/8/8/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "e6e7",
+      "f5f6",
+      "c5c6",
+      "c5d6",
+      "c5d5",
+      "c5b4",
+      "c5c4",
+      "c5d4",
+      "c5b5",
+      "c5b6"
+    ],
+    "hintMove": "c5c6",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=8%2F7k%2F4P3%2F2K2P2%2F8%2F8%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "protected-passer",
+    "positionId": "p07",
+    "fen": "8/8/5k2/8/1P6/2P5/3K4/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "d2d3",
+      "c3c4",
+      "d2e3",
+      "b4b5",
+      "d2c2",
+      "d2e2",
+      "d2c1",
+      "d2d1",
+      "d2e1"
+    ],
+    "hintMove": "d2d3",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F5k2%2F8%2F1P6%2F2P5%2F3K4%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "protected-passer",
+    "positionId": "p08",
+    "fen": "8/8/2k5/4P3/5P2/6K1/8/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "f4f5",
+      "e5e6",
+      "g3g4",
+      "g3h4",
+      "g3f3",
+      "g3h3",
+      "g3f2",
+      "g3g2",
+      "g3h2"
+    ],
+    "hintMove": "g3g4",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=8%2F8%2F2k5%2F4P3%2F5P2%2F6K1%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "bishop-escort",
+    "positionId": "p01",
+    "fen": "8/3k4/8/2KP4/8/8/1B6/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "b2f6",
+      "d5d6",
+      "b2a1",
+      "b2c1",
+      "b2a3",
+      "b2c3",
+      "b2d4",
+      "b2e5",
+      "b2g7",
+      "b2h8",
+      "c5c4",
+      "c5d4",
+      "c5b4",
+      "c5b5"
+    ],
+    "hintMove": "c5c4",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=8%2F3k4%2F8%2F2KP4%2F8%2F8%2F1B6%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "bishop-escort",
+    "positionId": "p02",
+    "fen": "8/5k2/8/5P2/5K2/8/2B5/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "f4e5",
+      "f4g5",
+      "c2d1",
+      "c2b3",
+      "c2d3",
+      "c2a4",
+      "f4e4",
+      "c2b1",
+      "c2e4",
+      "f4g4",
+      "f4e3",
+      "f4f3",
+      "f4g3"
+    ],
+    "hintMove": "f4e5",
+    "dtz": 3,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=8%2F5k2%2F8%2F5P2%2F5K2%2F8%2F2B5%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "bishop-escort",
+    "positionId": "p03",
+    "fen": "2k5/8/1KP5/8/8/8/4B3/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "c6c7",
+      "b6c5",
+      "e2d1",
+      "e2f1",
+      "e2d3",
+      "e2c4",
+      "e2g4",
+      "e2b5",
+      "e2h5",
+      "e2a6",
+      "e2f3",
+      "b6b5",
+      "b6a5",
+      "b6a6",
+      "b6a7"
+    ],
+    "hintMove": "b6c5",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=2k5%2F8%2F1KP5%2F8%2F8%2F8%2F4B3%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "bishop-escort",
+    "positionId": "p04",
+    "fen": "8/3k4/8/4K3/3P4/8/6B1/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "d4d5",
+      "g2f1",
+      "g2f3",
+      "g2h3",
+      "g2e4",
+      "g2h1",
+      "g2b7",
+      "g2a8",
+      "e5f5",
+      "e5f6",
+      "g2d5",
+      "e5d5",
+      "e5e4",
+      "e5f4",
+      "g2c6"
+    ],
+    "hintMove": "e5f5",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=8%2F3k4%2F8%2F4K3%2F3P4%2F8%2F6B1%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "bishop-escort",
+    "positionId": "p05",
+    "fen": "6k1/8/4KP2/8/1B6/8/8/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "f6f7",
+      "b4e1",
+      "b4d2",
+      "b4c5",
+      "b4d6",
+      "b4e7",
+      "b4a3",
+      "b4a5",
+      "e6e7",
+      "b4c3",
+      "b4f8",
+      "e6d5",
+      "e6e5",
+      "e6f5",
+      "e6d6",
+      "e6d7"
+    ],
+    "hintMove": "e6e7",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=6k1%2F8%2F4KP2%2F8%2F1B6%2F8%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "bishop-escort",
+    "positionId": "p06",
+    "fen": "8/2k5/8/2P5/2K5/4B3/8/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "c4d5",
+      "c4b5",
+      "e3c1",
+      "e3d2",
+      "e3f2",
+      "e3f4",
+      "e3g5",
+      "e3h6",
+      "c4d4",
+      "e3g1",
+      "e3d4",
+      "c4b4",
+      "c4c3",
+      "c4d3",
+      "c4b3"
+    ],
+    "hintMove": "c4d5",
+    "dtz": 3,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=8%2F2k5%2F8%2F2P5%2F2K5%2F4B3%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "bishop-escort",
+    "positionId": "p07",
+    "fen": "8/6k1/8/5KP1/8/8/8/2B5 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "g5g6",
+      "c1b2",
+      "c1d2",
+      "c1a3",
+      "c1e3",
+      "c1f4",
+      "f5e4",
+      "f5f4",
+      "f5g4",
+      "f5e5",
+      "f5e6"
+    ],
+    "hintMove": "f5e4",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=8%2F6k1%2F8%2F5KP1%2F8%2F8%2F8%2F2B5%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "bishop-escort",
+    "positionId": "p08",
+    "fen": "5k2/8/3KP3/8/8/8/B7/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "e6e7",
+      "a2b1",
+      "d6d7",
+      "a2b3",
+      "a2c4",
+      "a2d5",
+      "d6e5",
+      "d6d5",
+      "d6c6",
+      "d6c7",
+      "d6c5"
+    ],
+    "hintMove": "d6d7",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=5k2%2F8%2F3KP3%2F8%2F8%2F8%2FB7%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "knight-escort",
+    "positionId": "p01",
+    "fen": "8/3k4/8/2KP4/5N2/8/8/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "d5d6",
+      "f4e6",
+      "f4e2",
+      "f4d3",
+      "f4h5",
+      "f4g2",
+      "f4h3",
+      "f4g6",
+      "c5d4",
+      "c5b4",
+      "c5c4",
+      "c5b5",
+      "c5b6"
+    ],
+    "hintMove": "f4e6",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=8%2F3k4%2F8%2F2KP4%2F5N2%2F8%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "knight-escort",
+    "positionId": "p02",
+    "fen": "8/5k2/8/5P2/5K2/3N4/8/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "f4e5",
+      "f4g5",
+      "d3f2",
+      "d3b4",
+      "d3c5",
+      "d3c1",
+      "d3e1",
+      "d3b2",
+      "f4e4",
+      "d3e5",
+      "f4g4",
+      "f4e3",
+      "f4f3",
+      "f4g3"
+    ],
+    "hintMove": "d3f2",
+    "dtz": 3,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=8%2F5k2%2F8%2F5P2%2F5K2%2F3N4%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "knight-escort",
+    "positionId": "p03",
+    "fen": "2k5/8/1KP5/4N3/8/8/8/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "e5f7",
+      "b6c5",
+      "e5d3",
+      "e5f3",
+      "e5c4",
+      "e5g6",
+      "b6b5",
+      "e5g4",
+      "e5d7",
+      "b6a6",
+      "b6a5",
+      "b6a7"
+    ],
+    "hintMove": "e5f7",
+    "dtz": 3,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=2k5%2F8%2F1KP5%2F4N3%2F8%2F8%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "knight-escort",
+    "positionId": "p04",
+    "fen": "8/3k4/8/4K3/3P4/5N2/8/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "d4d5",
+      "f3d2",
+      "f3g5",
+      "f3e1",
+      "f3g1",
+      "f3h2",
+      "f3h4",
+      "e5d5",
+      "e5e4",
+      "e5f5",
+      "e5f6",
+      "e5f4"
+    ],
+    "hintMove": "f3d2",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=8%2F3k4%2F8%2F4K3%2F3P4%2F5N2%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "knight-escort",
+    "positionId": "p05",
+    "fen": "6k1/8/4KP2/3N4/8/8/8/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "d5f4",
+      "f6f7",
+      "d5e3",
+      "e6e7",
+      "d5c3",
+      "d5b4",
+      "d5b6",
+      "d5c7",
+      "d5e7",
+      "e6e5",
+      "e6f5",
+      "e6d6",
+      "e6d7"
+    ],
+    "hintMove": "d5f4",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=6k1%2F8%2F4KP2%2F3N4%2F8%2F8%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "knight-escort",
+    "positionId": "p06",
+    "fen": "8/6k1/8/5KP1/3N4/8/8/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "g5g6",
+      "d4e6",
+      "d4e2",
+      "d4f3",
+      "d4b5",
+      "d4c6",
+      "d4c2",
+      "d4b3",
+      "f5g4",
+      "f5e4",
+      "f5f4",
+      "f5e5",
+      "f5e6"
+    ],
+    "hintMove": "d4e6",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=8%2F6k1%2F8%2F5KP1%2F3N4%2F8%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "knight-escort",
+    "positionId": "p07",
+    "fen": "5k2/8/3KP3/8/2N5/8/8/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "c4e3",
+      "c4e5",
+      "e6e7",
+      "c4b2",
+      "c4d2",
+      "c4b6",
+      "d6d7",
+      "c4a3",
+      "c4a5",
+      "d6d5",
+      "d6e5",
+      "d6c5",
+      "d6c6"
+    ],
+    "hintMove": "c4e3",
+    "dtz": 1,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=5k2%2F8%2F3KP3%2F8%2F2N5%2F8%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  },
+  {
+    "lessonId": "knight-escort",
+    "positionId": "p08",
+    "fen": "8/3k4/8/1K6/1P6/3N4/8/8 w - - 0 1",
+    "category": "win",
+    "preservingMoves": [
+      "b5c5",
+      "b5c4",
+      "b5a5",
+      "b5a6",
+      "d3f4",
+      "d3c5",
+      "b5a4",
+      "b5b6",
+      "d3c1",
+      "d3e1",
+      "d3b2",
+      "d3f2",
+      "d3e5"
+    ],
+    "hintMove": "d3f4",
+    "dtz": 3,
+    "provenance": {
+      "source": "Lichess Syzygy tablebase API",
+      "url": "https://tablebase.lichess.ovh/standard?fen=8%2F3k4%2F8%2F1K6%2F1P6%2F3N4%2F8%2F8%20w%20-%20-%200%201",
+      "documentation": "https://github.com/lichess-org/lila-tablebase#http-api",
+      "verifiedAt": "2026-09-24"
+    }
+  }
+]
