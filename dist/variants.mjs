@@ -6,6 +6,10 @@ const transforms=[
 ];
 function checkVariant(variant){if(!Number.isInteger(variant)||variant<0||variant>=transforms.length)throw Error('Invalid position variant');}
 export function variantIds(lesson){return /[pP]/.test(lesson.fen.split(' ')[0])?[0,1]:[0,1,2,3,4,5,6,7];}
+export function chooseVariant(lesson,previous,random=Math.random){
+ const choices=variantIds(lesson).filter(id=>id!==previous);
+ return choices[Math.floor(random()*choices.length)];
+}
 export function transformSquare(square,variant=0){
  checkVariant(variant);if(typeof square!=='string'||!/^[a-h][1-8]$/.test(square))throw Error('Invalid square');
  const [x,y]=transforms[variant](files.indexOf(square[0]),Number(square[1])-1);return files[x]+(y+1);

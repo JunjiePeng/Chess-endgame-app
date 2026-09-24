@@ -7,11 +7,12 @@ import {Sounds,animateMove,wireBoardPointer} from './board-effects.mjs';
 import {setupOffline} from './offline.mjs';
 import {assessOutcome} from './outcome.mjs';
 import {createPersistence} from './persistence.mjs';
-import {variantIds} from './variants.mjs';
+import {variantIds,chooseVariant} from './variants.mjs';
 const $=id=>document.getElementById(id),engine=new Engine();
 let storage;try{storage=window.localStorage;}catch{storage={getItem:()=>null,setItem:()=>{throw Error('Storage blocked');}};}
 let data=loadData(storage),prefs=data.preferences,t=translator(prefs.language),libraryQuery='';
 let lesson=lessons[0],player=prefs.side,variant=0,game=new Chess(initialFen(lesson,player)),selected=null,flipped=player==='b';
+const lastVariants=new Map();
 let busy=false,finished=false,success=false,revision=0,reviewPly=null,hintLevel=0,hintMove=null,hintText=null,pendingPromotion=null,opponentError=false;
 let usedHelp=false,credited=false,attemptRecorded=false,feedback={key:'intro'},markMode=false,markFrom=null,marks=[],pendingImport=null;
 let evalSequence=0,evalKey=null,evalValue=null,engineReady=false,engineFailed=false,offlineState='offlinePreparing',storageWarning=false,toastTimer;
@@ -70,7 +71,7 @@ function choosePractice(){
  const unfinished=visible.filter(l=>!data.progress[`${l.id}:${player}`]?.wins),pool=unfinished.length?unfinished:visible,others=pool.filter(l=>l.id!==lesson.id),choices=others.length?others:pool;
  startLesson(choices[Math.floor(Math.random()*choices.length)].id);if(innerWidth<681)$('exercise-title').scrollIntoView({block:'start',behavior:'instant'});
 }
-function randomizePractice(){const choices=variantIds(lesson).filter(id=>id!==variant);startLesson(lesson.id,player,{variant:choices[Math.floor(Math.random()*choices.length)]});}
+function randomizePractice(){startLesson(lesson.id,player);}
 
 function localize(){
  t=translator(prefs.language);document.documentElement.lang=prefs.language==='zh'?'zh-CN':'en';document.title=prefs.language==='zh'?'Endgame — 残局练习室':'Endgame — Chess practice room';
@@ -94,9 +95,11 @@ function localize(){
  $('group-filter').value=prefs.libraryGroup;$('level-filter').value=prefs.libraryLevel;$('status-filter').value=prefs.libraryStatus;
  renderLibrary();render();if($('progress-dialog').open)renderProgress();
 }
-function startLesson(id,side=prefs.side,{save=true,variant:nextVariant=0}={}){
+function startLesson(id,side=prefs.side,{save=true,variant:nextVariant}={}){
  const found=lessons.find(l=>l.id===id);if(!found||!['w','b'].includes(side))throw Error('Unknown lesson or colour.');
+ if(nextVariant===undefined)nextVariant=chooseVariant(found,lastVariants.get(id));
  if(!variantIds(found).includes(nextVariant))throw Error('Unknown setup.');
+ lastVariants.set(id,nextVariant);
  revision++;evalSequence++;lesson=found;player=side;variant=nextVariant;prefs.side=side;game=new Chess(initialFen(lesson,side,variant));selected=null;flipped=side==='b';busy=false;finished=false;success=false;opponentError=false;reviewPly=null;usedHelp=false;credited=false;attemptRecorded=false;pendingPromotion=null;marks=[];markFrom=null;markMode=false;evalKey=null;evalValue=null;
  pointer?.cancel();$('promotion-dialog').close();clearHint();feedback={key:'intro'};localize();if(save)saveSession();
 }
@@ -206,7 +209,7 @@ for(const [id,key] of [['group-filter','libraryGroup'],['level-filter','libraryL
 $('clear-filters').onclick=()=>{libraryQuery='';$('lesson-search').value='';prefs.libraryGroup='all';prefs.libraryLevel='all';prefs.libraryStatus='all';localize();saveSession();};$('shuffle-btn').onclick=choosePractice;
 $('exercise-list').onclick=e=>{const b=e.target.closest('[data-lesson]');if(b){startLesson(b.dataset.lesson);if(innerWidth<681)$('exercise-title').scrollIntoView({block:'start',behavior:'instant'});}};
 $('undo-btn').onclick=undo;$('reset-btn').onclick=()=>startLesson(lesson.id,player,{variant});$('result-retry').onclick=$('reset-btn').onclick;$('randomize-btn').onclick=randomizePractice;$('flip-btn').onclick=()=>{pointer.cancel();flipped=!flipped;renderBoard();saveSession();};$('hint-btn').onclick=()=>void showHint();
-$('next-btn').onclick=()=>{if(!success){startLesson(lesson.id,player,{variant});return;}const visible=new Set(matchingLessons().map(l=>l.id)),i=lessons.indexOf(lesson),pool=lessons.slice(i+1).concat(lessons.slice(0,i)).filter(l=>visible.has(l.id)),next=pool.find(l=>!data.progress[`${l.id}:${player}`]?.wins)||pool[0]||lesson;startLesson(next.id,player,{variant:next.id===lesson.id?variant:0});};
+$('next-btn').onclick=()=>{if(!success){startLesson(lesson.id,player,{variant});return;}const visible=new Set(matchingLessons().map(l=>l.id)),i=lessons.indexOf(lesson),pool=lessons.slice(i+1).concat(lessons.slice(0,i)).filter(l=>visible.has(l.id)),next=pool.find(l=>!data.progress[`${l.id}:${player}`]?.wins)||pool[0]||lesson;startLesson(next.id,player,next.id===lesson.id?{variant}:{});};
 $('mark-btn').onclick=()=>{markMode=!markMode;selected=null;markFrom=null;render();};$('clear-marks-btn').onclick=()=>{marks=[];markFrom=null;renderBoard();};$('quick-dots').onclick=()=>changePreference('dots',!prefs.dots);$('quick-eval').onclick=()=>changePreference('evaluation',!prefs.evaluation);
 $('move-history').onclick=e=>{const b=e.target.closest('[data-ply]');if(b)reviewPosition(Number(b.dataset.ply));};
 $('first-btn').onclick=()=>reviewPosition(0);$('previous-btn').onclick=()=>reviewPosition(ply()-1);$('forward-btn').onclick=()=>reviewPosition(ply()+1);$('latest-btn').onclick=()=>reviewPosition(game.history().length);
@@ -227,7 +230,7 @@ setupOffline({onStatus:key=>{offlineState=key;$('offline-status').textContent=t(
 if(document.modelContext?.registerTool){
  const lifecycle=new AbortController();const definitions=[
   {name:'read_practice_position',description:'Read the live and displayed endgame position, preferences, legal moves and progress.',inputSchema:{type:'object',properties:{},additionalProperties:false},annotations:{readOnlyHint:true,untrustedContentHint:false},execute:()=>readState()},
-  {name:'start_endgame_lesson',description:'Start or restart one of the visible lessons. Choose White or Black; Black mirrors the original position.',inputSchema:{type:'object',properties:{lessonId:{type:'string',enum:lessons.map(l=>l.id)},side:{type:'string',enum:['w','b']}},required:['lessonId'],additionalProperties:false},annotations:{readOnlyHint:false,untrustedContentHint:false},execute:input=>{startLesson(input?.lessonId,input?.side||prefs.side);return readState();}},
+  {name:'start_endgame_lesson',description:'Start a lesson with a randomized setup different from its last setup in this visit. Choose White or Black; Black mirrors the position.',inputSchema:{type:'object',properties:{lessonId:{type:'string',enum:lessons.map(l=>l.id)},side:{type:'string',enum:['w','b']}},required:['lessonId'],additionalProperties:false},annotations:{readOnlyHint:false,untrustedContentHint:false},execute:input=>{startLesson(input?.lessonId,input?.side||prefs.side);return readState();}},
   {name:'randomize_endgame_position',description:'Restart the current exercise in a different equivalent starting setup, preserving its goal and chosen colour.',inputSchema:{type:'object',properties:{},additionalProperties:false},annotations:{readOnlyHint:false,untrustedContentHint:false},execute:()=>{randomizePractice();return readState();}},
   {name:'play_chess_move',description:'Play a legal move for the chosen practice side, then wait for the opponent. Historical boards cannot be played.',inputSchema:{type:'object',properties:{from:{type:'string',pattern:'^[a-h][1-8]$'},to:{type:'string',pattern:'^[a-h][1-8]$'},promotion:{type:'string',enum:['q','r','b','n']}},required:['from','to'],additionalProperties:false},annotations:{readOnlyHint:false,untrustedContentHint:false},execute:input=>{if(!input||!/^[a-h][1-8]$/.test(input.from)||!/^[a-h][1-8]$/.test(input.to)||input.promotion&&!['q','r','b','n'].includes(input.promotion))throw Error('Invalid move input');return makeMove(input.from,input.to,input.promotion||'q');}}
  ];for(const tool of definitions)try{Promise.resolve(document.modelContext.registerTool(tool,{signal:lifecycle.signal})).catch(()=>{});}catch{}

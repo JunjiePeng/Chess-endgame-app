@@ -4,11 +4,21 @@ import {Chess} from '../dist/vendor/chess.mjs';
 import {lessons} from '../dist/lessons.mjs';
 import {assessOutcome} from '../dist/outcome.mjs';
 import {initialFen,freshData,validateData,loadData,KEY} from '../dist/preferences.mjs';
-import {variantIds,variantFen,transformSquare,transformLessonText} from '../dist/variants.mjs';
+import {variantIds,variantFen,transformSquare,transformLessonText,chooseVariant} from '../dist/variants.mjs';
 
 const uci=move=>move.from+move.to+(move.promotion||'');
 const play=(game,move)=>game.move({from:move.slice(0,2),to:move.slice(2,4),promotion:move[4]||'q'});
 const lesson=id=>lessons.find(item=>item.id===id);
+test('random setup selection never repeats the previous setup for any exercise',()=>{
+ for(const item of lessons){
+  const ids=variantIds(item);
+  for(const previous of [undefined,...ids]){
+   const choices=ids.filter(id=>id!==previous),selected=new Set();
+   for(let i=0;i<choices.length;i++)selected.add(chooseVariant(item,previous,()=>i/choices.length));
+   assert.deepEqual([...selected],choices,item.id);
+  }
+ }
+});
 function mapSquare(square,variant,side){return side==='w'?transformSquare(square,variant):transformSquare(transformSquare(transformSquare(square,5),variant),5);}
 function mapMove(move,variant,side){return mapSquare(move.slice(0,2),variant,side)+mapSquare(move.slice(2,4),variant,side)+move.slice(4);}
 
