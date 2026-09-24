@@ -35,3 +35,22 @@ Object.assign(copy.zh,{filterCount:'显示 {n} / {total} 个练习'});
 
 Object.assign(copy.en,{helpIntro:'Each exercise has several verified starting positions. Select an exercise or Randomize for a fresh position; Restart repeats the current one. Recent positions are remembered on this device. Filter by theme or level, or use Surprise me to choose an exercise.'});
 Object.assign(copy.zh,{helpIntro:'每个练习都有多个经验证的起始局面。点击练习或“随机局面”可换一个新局面；“重新开始”则重复当前局面。本设备会记住最近练过的局面。也可按主题、难度筛选，或用“随机练习”选择课程。'});
+
+Object.assign(copy.en,{
+ checkingResult:'Checking the result',checkingDetail:'Confirming the position before finishing…',
+ decisiveWin:'Decisive advantage confirmed. You converted the position into a clear win; this practice is complete.',
+ decisiveLoss:'Decisive material loss. The engine confirms a lost position. Undo or retry to find a better plan.',
+ objectiveLost:'Your last pawn is gone and the remaining rook ending offers no winning advantage. Undo or retry.',
+ defenseSecured:'Defence complete. The pawn threat is gone and the engine confirms that the remaining position can be held.',
+ completionHelp:'Decisive material changes can finish a conversion or defensive exercise early after full-strength checks. Mating-technique exercises still require checkmate. Undo lets you try a different continuation.',
+ helpPlay:'Tap a piece and a destination, or drag it. The opponent pauses before replying, with extra time around captures. Board aids and animations can be changed in Settings.'
+});
+Object.assign(copy.zh,{
+ checkingResult:'正在确认结果',checkingDetail:'结束练习前，再确认当前局面…',
+ decisiveWin:'已确认决定性优势。你已将局面转化为明确的胜势，本次练习完成。',
+ decisiveLoss:'关键子力损失。引擎确认当前局面已败势。可以悔棋或重试，寻找更好的方案。',
+ objectiveLost:'最后一枚兵已丢失，剩下的车残局没有获胜优势。可以悔棋或重试。',
+ defenseSecured:'防守完成！兵的威胁已解除，引擎确认剩余局面可以守住。',
+ completionHelp:'转换优势或防守练习中，决定性的子力变化经最高强度确认后，可以提前结束。专门的将杀练习仍需完成将杀。可以悔棋，尝试其他走法。',
+ helpPlay:'点击棋子和目标格，或直接拖动。电脑应答前会短暂停顿，吃子时会多留一点时间。棋盘辅助和动画可在设置中调整。'
+});

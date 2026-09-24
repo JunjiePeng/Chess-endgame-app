@@ -30,7 +30,7 @@ test('engine retries after a synchronous Worker construction failure',async t=>{
  const workers=mockWorkers(t,{construct(){if(++attempts===1)throw Error('Worker unavailable');}}),engine=new Engine();
  await assert.rejects(engine.init(),/Worker unavailable/);
  assert.equal(engine.ready,null);
- assert.deepEqual(await engine.analyze('current',250,20),{move:'e2e4',evaluation:{type:'cp',value:20}});
+ assert.deepEqual(await engine.analyze('current',250,20),{move:'e2e4',evaluation:{type:'cp',value:20},depth:1});
  assert.equal(attempts,2);assert.equal(workers.length,1);
 });
 
@@ -114,4 +114,28 @@ test('update targets the current waiting worker if the original offer was replac
  const state=await offlineFixture(t),messages=[];
  state.waiting.state='redundant';state.registration.waiting={postMessage:message=>messages.push(message)};
  state.activate();assert.deepEqual(messages,[{type:'SKIP_WAITING'}]);assert.deepEqual(state.messages,[]);
+});
+
+
+test('engine confirmation uses an exact root score with its own depth',async t=>{
+ mockWorkers(t,{command(worker,message){
+  if(!message.startsWith('go '))return;
+  queueMicrotask(()=>{
+   worker.emit('info depth 14 multipv 1 score cp 910 nodes 12345');
+   worker.emit('info depth 18 multipv 2 score mate 1');
+   worker.emit('info depth 20 score cp 1500 lowerbound');
+   worker.emit('info depth 21 score cp -2000 upperbound');
+   worker.emit('info depth 22 score cp 875');
+   worker.emit('bestmove e2e4');
+  });return false;
+ }});
+ assert.deepEqual(await new Engine().analyze('current'),{move:'e2e4',evaluation:{type:'cp',value:875},depth:22});
+});
+
+test('a later root bound invalidates an earlier exact result',async t=>{
+ mockWorkers(t,{command(worker,message){
+  if(!message.startsWith('go '))return;
+  queueMicrotask(()=>{worker.emit('info depth 14 score cp 910');worker.emit('info depth 20 score cp -2000 upperbound');worker.emit('bestmove e2e4');});return false;
+ }});
+ assert.deepEqual(await new Engine().analyze('current'),{move:'e2e4',evaluation:null});
 });

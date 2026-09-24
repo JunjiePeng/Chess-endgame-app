@@ -7,6 +7,8 @@ import {Sounds,animateMove,wireBoardPointer} from './board-effects.mjs';
 import {setupOffline} from './offline.mjs';
 import {setupMobileUI} from './mobile.mjs';
 import {assessOutcome} from './outcome.mjs';
+import {candidateFor,createAdjudication} from './adjudication.mjs';
+import {waitForReply} from './reply-pacing.mjs';
 import {createPersistence} from './persistence.mjs';
 import {variantIds,chooseVariant} from './variants.mjs';
 import {positionsFor,getPosition,choosePosition,rememberPosition} from './positions.mjs';
@@ -15,6 +17,7 @@ let storage;try{storage=window.localStorage;}catch{storage={getItem:()=>null,set
 let data=loadData(storage),prefs=data.preferences,t=translator(prefs.language),libraryQuery='';
 let lesson=lessons[0],player=prefs.side,variant=0,positionId='base',game=new Chess(initialFen(lesson,player)),selected=null,flipped=player==='b';
 const lastVariants=new Map();
+let adjudication=null,checkingResult=false;
 let busy=false,finished=false,success=false,revision=0,reviewPly=null,hintLevel=0,hintMove=null,hintText=null,pendingPromotion=null,opponentError=false;
 let usedHelp=false,credited=false,attemptRecorded=false,feedback={key:'intro'},markMode=false,markFrom=null,marks=[],pendingImport=null;
 let evalSequence=0,evalKey=null,evalValue=null,engineReady=false,engineFailed=false,offlineState='offlinePreparing',storageWarning=false,toastTimer,mobileUI;
@@ -40,7 +43,7 @@ const viewGame=()=>isReviewing()?new Chess(reviewPly===0?initialFen(lesson,playe
 const canPlay=()=>!busy&&!finished&&!isReviewing()&&game.turn()===player&&!markMode&&!$('promotion-dialog').open;
 function toast(key,args={}){$('toast').textContent=t(key,args);$('toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').hidden=true,5000);}
 function persist(options){return persistence.save(options);}
-function saveSession(){data.preferences=prefs;const moves=game.history({verbose:true}).map(m=>m.from+m.to+(m.promotion||''));data.session=moves.length&&!attemptRecorded||success&&!credited?null:{lessonId:lesson.id,side:player,...(variant?{variant}:{}),...(positionId!=='base'?{positionId}:{}),moves,flipped,finished,success,usedHelp,credited,attemptRecorded};return persist();}
+function saveSession(){data.preferences=prefs;const moves=game.history({verbose:true}).map(m=>m.from+m.to+(m.promotion||''));data.session=moves.length&&!attemptRecorded||success&&!credited?null:{lessonId:lesson.id,side:player,...(variant?{variant}:{}),...(positionId!=='base'?{positionId}:{}),moves,flipped,finished,success,usedHelp,credited,attemptRecorded,...(adjudication?{adjudication}:{})};return persist();}
 function message(key,args={}){feedback={key,args};$('feedback').textContent=key==='intro'?text('intro'):t(key,args);}
 function strengthName(){return t(prefs.skill<5?'beginner':prefs.skill<10?'casual':prefs.skill<20?'club':'strongest');}
 function newAttempt(){const key=recordKey();if(attemptRecorded&&data.progress[key]?.attempts)return;attemptRecorded=true;data.progress[key]??={attempts:0,wins:0,cleanWins:0,bestMoves:null,lastPlayed:''};data.progress[key].attempts++;data.progress[key].lastPlayed=new Date().toISOString();}
@@ -104,15 +107,15 @@ function startLesson(id,side=prefs.side,{save=true,variant:nextVariant,positionI
  if(nextVariant===undefined)nextVariant=chooseVariant(found,lastVariants.get(id));
  if(!variantIds(found).includes(nextVariant))throw Error('Unknown setup.');
  lastVariants.set(id,nextVariant);
- revision++;evalSequence++;lesson=found;player=side;variant=nextVariant;positionId=nextPosition;prefs.side=side;game=new Chess(initialFen(lesson,side,variant,positionId));selected=null;flipped=side==='b';busy=false;finished=false;success=false;opponentError=false;reviewPly=null;usedHelp=false;credited=false;attemptRecorded=false;pendingPromotion=null;marks=[];markFrom=null;markMode=false;evalKey=null;evalValue=null;
+ revision++;evalSequence++;adjudication=null;checkingResult=false;lesson=found;player=side;variant=nextVariant;positionId=nextPosition;prefs.side=side;game=new Chess(initialFen(lesson,side,variant,positionId));selected=null;flipped=side==='b';busy=false;finished=false;success=false;opponentError=false;reviewPly=null;usedHelp=false;credited=false;attemptRecorded=false;pendingPromotion=null;marks=[];markFrom=null;markMode=false;evalKey=null;evalValue=null;
  pointer?.cancel();$('promotion-dialog').close();mobileUI?.closePanel();clearHint();feedback={key:'intro'};localize();if(save)saveSession();
 }
 function restoreSession(snapshot){
  if(!snapshot){startLesson(lessons[0].id);return;}
  startLesson(snapshot.lessonId,snapshot.side,{save:false,variant:snapshot.variant??0,positionId:snapshot.positionId??'base'});
  for(const u of snapshot.moves)game.move({from:u.slice(0,2),to:u.slice(2,4),promotion:u[4]||'q'});
- ({flipped,finished,success,usedHelp,credited,attemptRecorded}=snapshot);feedback={key:finished?(success?'complete':'ended'):'restored'};localize();saveSession();
- if(!finished&&game.turn()!==player)void playOpponent();
+ ({flipped,finished,success,usedHelp,credited,attemptRecorded}=snapshot);adjudication=snapshot.adjudication??null;feedback={key:finished?(success?'complete':'ended'):'restored'};localize();saveSession();
+ if(!finished){if(game.turn()!==player)void playOpponent();else if(candidateFor(game,lesson,player))void resumeResultCheck();}
 }
 function renderBoard(){
  const focused=document.activeElement?.dataset?.square,g=viewGame(),legal=selected&&canPlay()?game.moves({square:selected,verbose:true}).map(m=>m.to):[],hist=game.history({verbose:true}),last=hist[ply()-1];
@@ -144,11 +147,11 @@ function render(){
  renderBoard();renderHistory();renderHint();
  const side=sideName(game.turn()),history=game.history();
  const showResult=finished&&!isReviewing();$('practice-result').hidden=!showResult;
- if(showResult){$('practice-result').className='practice-result '+(success?'success':'failure');$('result-icon').textContent=success?'✓':'×';$('result-title').textContent=t(success?'resultSuccess':'resultFailure');$('result-reason').textContent=t(assessOutcome(game,lesson,player).key||feedback.key);}
+ if(showResult){$('practice-result').className='practice-result '+(success?'success':'failure');$('result-icon').textContent=success?'✓':'×';$('result-title').textContent=t(success?'resultSuccess':'resultFailure');$('result-reason').textContent=t(assessOutcome(game,lesson,player,adjudication).key||feedback.key);}
  $('move-count').textContent=t('move',{n:game.fen().split(' ')[5]});
- $('game-status').textContent=isReviewing()?t('review',{n:ply()}):finished?t(success?'resultSuccess':'resultFailure'):busy?t(game.turn()!==player?'thinking':'finding'):game.turn()===player?t(game.isCheck()?'check':'turn',{side}):t('paused');
- $('turn-detail').textContent=t(isReviewing()?'reviewNotice':finished?'finishedDetail':busy?'thinkingDetail':game.turn()===player?'turnDetail':'pausedDetail');
- $('turn-indicator').textContent=t(isReviewing()?'returnLive':finished?(success?'resultSuccess':'resultFailure'):busy?'thinking':game.turn()===player?'yourMove':'paused');$('turn-indicator').dataset.result=showResult?(success?'success':'failure'):'';
+ $('game-status').textContent=isReviewing()?t('review',{n:ply()}):finished?t(success?'resultSuccess':'resultFailure'):busy?t(checkingResult?'checkingResult':game.turn()!==player?'thinking':'finding'):game.turn()===player?t(game.isCheck()?'check':'turn',{side}):t('paused');
+ $('turn-detail').textContent=t(isReviewing()?'reviewNotice':finished?'finishedDetail':busy?(checkingResult?'checkingDetail':'thinkingDetail'):game.turn()===player?'turnDetail':'pausedDetail');
+ $('turn-indicator').textContent=t(isReviewing()?'returnLive':finished?(success?'resultSuccess':'resultFailure'):busy?(checkingResult?'checkingResult':'thinking'):game.turn()===player?'yourMove':'paused');$('turn-indicator').dataset.result=showResult?(success?'success':'failure'):'';
  $('status-dot').style.background=finished?(success?'var(--green)':'#b34735'):busy?'#a5b2a7':'var(--green)';
  $('feedback').hidden=showResult;
  $('feedback').textContent=isReviewing()?t('reviewNotice'):feedback.key==='intro'?text('intro'):t(feedback.key,feedback.key==='blackPlayed'?{...feedback.args,goal:t(lesson.goal==='draw'?'goalDraw':lesson.goal==='promotion'?'goalPromotion':'goalMate')}:feedback.args);
@@ -160,19 +163,71 @@ function render(){
 function creditWin(){if(credited)return;newAttempt();credited=true;const r=data.progress[recordKey()],moves=game.history({verbose:true}).filter(m=>m.color===player).length;r.wins++;if(!usedHelp)r.cleanWins++;r.bestMoves=r.bestMoves===null?moves:Math.min(r.bestMoves,moves);r.lastPlayed=new Date().toISOString();data.activity[localDay()]=(data.activity[localDay()]||0)+1;}
 function markFinished(key,won){mobileUI?.closePanel();finished=true;busy=false;success=won;if(won){creditWin();sounds.play('win');}message(key);renderLibrary();render();saveSession();if(!isReviewing())$('practice-result').scrollIntoView?.({block:'nearest',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});}
 function checkOutcome(){
- const result=assessOutcome(game,lesson,player);
+ const result=assessOutcome(game,lesson,player,adjudication);
  if(!result.finished)return false;markFinished(result.key,result.success);return true;
 }
 
-function moved(move){selected=null;marks=[];markFrom=null;clearHint();evalSequence++;evalKey=null;render();sounds.play(move.san.includes('+')?'check':move.captured?'capture':'move');}
+function moved(move){adjudication=null;selected=null;marks=[];markFrom=null;clearHint();evalSequence++;evalKey=null;render();sounds.play(move.san.includes('+')?'check':move.captured?'capture':'move');}
+// Result checks always use full strength, independently of opponent settings.
+// Evidence belongs to one exact board; cancellation never resumes an old game.
+async function checkSmartOutcome(token){
+ if(!candidateFor(game,lesson,player))return false;
+ const fen=game.fen(),current=()=>token===revision&&game.fen()===fen&&!finished;
+ checkingResult=true;busy=true;render();
+ try{
+  const analyses=[];
+  for(const duration of [500,800]){
+   const result=await engine.analyze(fen,duration,20,current);
+   if(!current())return false;
+   analyses.push(result);
+  }
+  adjudication=createAdjudication(game,lesson,player,analyses);
+  if(adjudication){checkingResult=false;return checkOutcome();}
+ }catch{/* An unavailable or uncertain estimate leaves ordinary play available. */}
+ finally{if(token===revision)checkingResult=false;}
+ return false;
+}
+async function resumeResultCheck(){
+ const token=revision;
+ if(await checkSmartOutcome(token)||token!==revision)return;
+ busy=false;render();saveSession();
+}
 async function playOpponent(previousMove=null,animate=true){
- const token=revision;busy=true;opponentError=false;render();if(previousMove&&animate)animateMove($('board'),previousMove,prefs.animation);
- try{const result=await engine.analyze(game.fen(),350+prefs.skill*10,prefs.skill,()=>token===revision);if(token!==revision)return;const u=result.move;const move=game.move({from:u.slice(0,2),to:u.slice(2,4),promotion:u[4]||'q'});busy=false;moved(move);if(checkOutcome(move)){animateMove($('board'),move,prefs.animation);return;}message(game.isCheck()?'checkFeedback':'blackPlayed',{move:move.san,goal:t(lesson.goal==='draw'?'goalDraw':lesson.goal==='promotion'?'goalPromotion':'goalMate')});render();animateMove($('board'),move,prefs.animation);saveSession();}
- catch{if(token!==revision)return;busy=false;opponentError=true;message('opponentError');render();saveSession();}
+ const token=revision;busy=true;opponentError=false;render();
+ const renderedAt=performance.now();
+ if(candidateFor(game,lesson,player)){
+  const pending=checkSmartOutcome(token);
+  if(previousMove&&animate)animateMove($('board'),previousMove,prefs.animation);
+  if(await pending||token!==revision)return;
+  render();
+ }else if(previousMove&&animate)animateMove($('board'),previousMove,prefs.animation);
+ try{
+  const result=await engine.analyze(game.fen(),350+prefs.skill*10,prefs.skill,()=>token===revision);
+  if(token!==revision)return;
+  const u=result.move,reply={from:u.slice(0,2),to:u.slice(2,4),promotion:u[4]||'q'};
+  const preview=new Chess(game.fen()).move(reply);
+  if(!await waitForReply({renderedAt,capture:!!(previousMove?.captured||preview.captured),isCurrent:()=>token===revision}))return;
+  const move=game.move(reply);moved(move);
+  if(checkOutcome()){if(!isReviewing())animateMove($('board'),move,prefs.animation);return;}
+  // Save a legal unfinished snapshot before asynchronous analysis, so closing
+  // the app during a result check cannot lose the opponent's latest move.
+  saveSession();
+  const checking=!!candidateFor(game,lesson,player);
+  if(checking){
+   const pending=checkSmartOutcome(token);
+   if(!isReviewing())animateMove($('board'),move,prefs.animation);
+   if(await pending||token!==revision)return;
+  }
+  busy=false;message(game.isCheck()?'checkFeedback':'blackPlayed',{move:move.san,goal:t(lesson.goal==='draw'?'goalDraw':lesson.goal==='promotion'?'goalPromotion':'goalMate')});render();
+  if(!checking&&!isReviewing())animateMove($('board'),move,prefs.animation);
+  saveSession();
+ }catch{if(token!==revision)return;busy=false;opponentError=true;message('opponentError');render();saveSession();}
 }
 async function makeMove(from,to,promotion='q',animate=true){
  if(!canPlay())throw Error(t('notTurn'));let move;try{move=game.move({from,to,promotion});}catch{throw Error(t('illegal'));}
- newAttempt();busy=true;moved(move);if(!checkOutcome(move)){saveSession();await playOpponent(move,animate);}else if(animate)animateMove($('board'),move,prefs.animation);await saveSession();return readState();
+ const token=revision;
+ newAttempt();busy=true;moved(move);if(!checkOutcome()){saveSession();await playOpponent(move,animate);}else if(animate)animateMove($('board'),move,prefs.animation);
+ if(token===revision)await saveSession();return readState();
 }
 function attemptMove(from,to,animate=true){
  if(!canPlay())return;const options=game.moves({square:from,verbose:true}).filter(m=>m.to===to);if(!options.length){message('illegal');render();return;}
@@ -183,7 +238,7 @@ function onSquare(square){
  if(markMode){if(!markFrom){markFrom=square;renderBoard();}else toggleMark(markFrom,square);return;}
  if(!canPlay())return;const p=game.get(square);if(p?.color===player){selected=selected===square?null:square;renderBoard();return;}if(selected)attemptMove(selected,square);
 }
-function undo(){if(!game.history().length||isReviewing())return;revision++;evalSequence++;pointer.cancel();game.undo();if(game.turn()!==player)game.undo();busy=false;finished=false;success=false;opponentError=false;selected=null;usedHelp=true;reviewPly=null;pendingPromotion=null;marks=[];markFrom=null;evalKey=null;$('promotion-dialog').close();clearHint();message('takeback');render();saveSession();}
+function undo(){if(!game.history().length||isReviewing())return;revision++;evalSequence++;adjudication=null;checkingResult=false;pointer.cancel();game.undo();if(game.turn()!==player)game.undo();busy=false;finished=false;success=false;opponentError=false;selected=null;usedHelp=true;reviewPly=null;pendingPromotion=null;marks=[];markFrom=null;evalKey=null;$('promotion-dialog').close();clearHint();message('takeback');render();saveSession();}
 async function showHint(){
  if(opponentError){await playOpponent();return;}if(!canPlay())return;usedHelp=true;
  if(hintLevel===0){hintLevel=1;render();saveSession();return;}
@@ -204,7 +259,7 @@ function renderProgress(){
  $('progress-list').innerHTML=lessons.map(l=>`<section class="lesson-progress"><h3>${lessonText(l,'title',prefs.language,player)}</h3>${['w','b'].map(side=>{const r=data.progress[`${l.id}:${side}`];return `<div><span class="side-progress">${sideName(side)} ${r?.wins?'✓':''}</span><span>${r?.wins?t('best',{n:r.bestMoves}):t('unplayed')}<small>${t('attempts',{n:r?.attempts||0})}</small></span></div>`;}).join('')}</section>`).join('');
 }
 function changePreference(key,value){if(key==='side'){startLesson(lesson.id,value,{variant,positionId});return;}prefs[key]=value;localize();saveSession();if(key==='sound'&&value){sounds.unlock();sounds.play();}}
-function readState(){return {lesson:lesson.id,goal:lesson.goal,player,positionId,positionCount:positionsFor(lesson).length,variant,variantCount:variantIds(lesson).length,libraryCount:lessons.length,visibleLessons:matchingLessons().map(l=>l.id),fen:game.fen(),displayFen:viewGame().fen(),reviewPly,turn:game.turn(),thinking:busy,finished,success,moves:game.history(),legalMoves:game.moves(),preferences:{...prefs},completed:lessons.filter(l=>data.progress[`${l.id}:${player}`]?.wins).map(l=>l.id)};}
+function readState(){return {lesson:lesson.id,goal:lesson.goal,player,positionId,positionCount:positionsFor(lesson).length,variant,variantCount:variantIds(lesson).length,libraryCount:lessons.length,visibleLessons:matchingLessons().map(l=>l.id),fen:game.fen(),displayFen:viewGame().fen(),reviewPly,turn:game.turn(),thinking:busy,finished,success,resultReason:finished?assessOutcome(game,lesson,player,adjudication).key:null,moves:game.history(),legalMoves:game.moves(),preferences:{...prefs},completed:lessons.filter(l=>data.progress[`${l.id}:${player}`]?.wins).map(l=>l.id)};}
 let pointer=wireBoardPointer({board:$('board'),ghost:$('drag-ghost'),canMove:canPlay,isMine:s=>game.get(s)?.color===player,select:s=>{selected=s;renderBoard();},move:(a,b)=>attemptMove(a,b,false),mark:toggleMark,onNormalPointer:clearNormalMarks,onCancel:renderBoard,getRevision:()=>revision});
 $('board').addEventListener('click',e=>{clearNormalMarks();if(pointer.ignoreClick(e))return;const s=e.target.closest('[data-square]')?.dataset.square;if(s)onSquare(s);});
 $('board').addEventListener('keydown',e=>{const squares=[...$('board').children],index=squares.indexOf(e.target),delta={ArrowLeft:[0,-1],ArrowRight:[0,1],ArrowUp:[-1,0],ArrowDown:[1,0]}[e.key];if(delta&&index>=0){e.preventDefault();const row=Math.max(0,Math.min(7,Math.floor(index/8)+delta[0])),column=Math.max(0,Math.min(7,index%8+delta[1])),next=squares[row*8+column];squares.forEach(b=>b.tabIndex=-1);next.tabIndex=0;next.focus();}if(e.key==='Escape'){selected=null;markFrom=null;markMode=false;render();}});

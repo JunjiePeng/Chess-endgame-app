@@ -1,6 +1,7 @@
 import {Chess} from './vendor/chess.mjs';
 import {lessons} from './lessons.mjs';
 import {assessOutcome} from './outcome.mjs';
+import {assessAdjudication} from './adjudication.mjs';
 import {variantIds,variantFen} from './variants.mjs';
 import {getPosition,validatePracticeOrder} from './positions.mjs';
 export const KEY='endgame-practice-v2';
@@ -57,7 +58,11 @@ export function validateData(raw){
     session={lessonId:s.lessonId,side:s.side,moves:[...s.moves],flipped:!!s.flipped,finished:!!s.finished,success:!!s.success,usedHelp:!!s.usedHelp,credited:!!s.credited,attemptRecorded:!!s.attemptRecorded};
     if(variant)session.variant=variant;
     if(positionId!=='base')session.positionId=positionId;
-    const record=progress[`${s.lessonId}:${s.side}`],result=assessOutcome(g,lesson,s.side);
+    if(s.adjudication!==undefined){
+      if(!assessAdjudication(g,lesson,s.side,s.adjudication))throw Error('Invalid adjudication');
+      session.adjudication={version:1,fen:s.adjudication.fen,key:s.adjudication.key,evaluations:s.adjudication.evaluations.map(({type,value,depth})=>({type,value,depth}))};
+    }
+    const record=progress[`${s.lessonId}:${s.side}`],result=assessOutcome(g,lesson,s.side,session.adjudication);
     if(session.finished!==result.finished||session.success!==result.success||
       (s.moves.length&&!session.attemptRecorded)||(session.attemptRecorded&&!record?.attempts)||
       (session.credited&&!record?.wins)||(session.success&&!session.credited))throw Error('Invalid result');
