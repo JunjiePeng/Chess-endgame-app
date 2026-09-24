@@ -1,8 +1,24 @@
 export async function setupOffline({onStatus,onUpdate,onInstall}){
- let reloadRequested=false;
+ let reloadRequested=false,installEvent=null,installing=false,installed=false;
+ const offerInstall=()=>{
+  if(!installEvent||installing||installed)return;
+  const event=installEvent;
+  onInstall(async()=>{
+   if(installing||installed||installEvent!==event)return null;
+   // Browser install prompts can only be used once, including after dismissal.
+   installEvent=null;installing=true;onInstall(null);
+   try{
+    const [,choice]=await Promise.all([event.prompt(),event.userChoice]);
+    if(choice?.outcome==='accepted')installEvent=null;
+    return choice;
+   }catch{return null;}
+   finally{installing=false;offerInstall();}
+  });
+ };
  window.addEventListener('beforeinstallprompt',event=>{
-  event.preventDefault();onInstall(async()=>{await event.prompt();await event.userChoice;});
+  event.preventDefault();if(installed)return;installEvent=event;offerInstall();
  });
+ window.addEventListener('appinstalled',()=>{installed=true;installEvent=null;onInstall(null);});
  if(!('serviceWorker' in navigator)){onStatus('offlineFailed');return;}
  navigator.serviceWorker.addEventListener('controllerchange',()=>{if(reloadRequested)location.reload();});
  try{

@@ -5,6 +5,7 @@ import {KEY,loadData,validateData,initialFen,localDay,streak} from './preference
 import {translator,lessonText} from './i18n.mjs';
 import {Sounds,animateMove,wireBoardPointer} from './board-effects.mjs';
 import {setupOffline} from './offline.mjs';
+import {setupMobileUI} from './mobile.mjs';
 import {assessOutcome} from './outcome.mjs';
 import {createPersistence} from './persistence.mjs';
 import {variantIds,chooseVariant} from './variants.mjs';
@@ -15,7 +16,7 @@ let lesson=lessons[0],player=prefs.side,variant=0,game=new Chess(initialFen(less
 const lastVariants=new Map();
 let busy=false,finished=false,success=false,revision=0,reviewPly=null,hintLevel=0,hintMove=null,hintText=null,pendingPromotion=null,opponentError=false;
 let usedHelp=false,credited=false,attemptRecorded=false,feedback={key:'intro'},markMode=false,markFrom=null,marks=[],pendingImport=null;
-let evalSequence=0,evalKey=null,evalValue=null,engineReady=false,engineFailed=false,offlineState='offlinePreparing',storageWarning=false,toastTimer;
+let evalSequence=0,evalKey=null,evalValue=null,engineReady=false,engineFailed=false,offlineState='offlinePreparing',storageWarning=false,toastTimer,mobileUI;
 const sounds=new Sounds(()=>prefs.sound),pieceNames={k:'king',q:'queen',r:'rook',b:'bishop',n:'knight',p:'pawn'};
 const persistence=createPersistence({storage,initial:data,read:()=>data,locks:navigator.locks,adopt:merged=>{
  const changed=JSON.stringify(data.progress)!==JSON.stringify(merged.progress)||JSON.stringify(data.activity)!==JSON.stringify(merged.activity);
@@ -69,7 +70,7 @@ function renderNext(){$('next-btn').hidden=!finished||isReviewing();$('next-btn'
 function choosePractice(){
  const visible=matchingLessons();if(!visible.length)return;
  const unfinished=visible.filter(l=>!data.progress[`${l.id}:${player}`]?.wins),pool=unfinished.length?unfinished:visible,others=pool.filter(l=>l.id!==lesson.id),choices=others.length?others:pool;
- startLesson(choices[Math.floor(Math.random()*choices.length)].id);if(innerWidth<681)$('exercise-title').scrollIntoView({block:'start',behavior:'instant'});
+ startLesson(choices[Math.floor(Math.random()*choices.length)].id);mobileUI?.returnToBoard({heading:true});
 }
 function randomizePractice(){startLesson(lesson.id,player);}
 
@@ -83,7 +84,7 @@ function localize(){
  $('progress-btn').ariaLabel=t('progress');$('board').ariaLabel=t('helpPlay');$('evaluation').ariaLabel=t('evalLabel');$('review-controls').ariaLabel=t('helpReview');
  $('exercise-category').textContent=text('group').toUpperCase()+` / ${String(lessons.indexOf(lesson)+1).padStart(2,'0')}`;$('exercise-title').textContent=text('title');$('exercise-description').textContent=text('subtitle');$('difficulty').textContent=t(lesson.level.toLowerCase());
  $('setup-label').textContent=t('setupCount',{n:variantIds(lesson).indexOf(variant)+1,total:variantIds(lesson).length});
- $('objective-title').textContent=text('objective');$('objective-text').textContent=text('description');$('principle-text').textContent=text('principle');
+ $('mobile-goal').textContent=t('practiceGoal',{goal:text('objective')});$('objective-title').textContent=text('objective');$('objective-text').textContent=text('description');$('principle-text').textContent=text('principle');
  $('objective-pieces').innerHTML=lesson.material.map(p=>p==='vs'?'<span>vs.</span>':image((p[0]==='w'?player:player==='w'?'b':'w')+p[1])).join('');
  $('you-avatar').innerHTML=image(player+'K');$('opponent-avatar').innerHTML=image((player==='w'?'b':'w')+'K');$('you-colour').textContent=sideName(player);$('opponent-label').textContent=sideName(player==='w'?'b':'w');$('opponent-strength').textContent=strengthName();
  $('history-sides').textContent=t('white')+' / '+t('black');$('engine-note').textContent=t(engineReady?'engineNote':engineFailed?'engineRetry':'engineLoading');$('offline-status').textContent=t(offlineState);
@@ -101,7 +102,7 @@ function startLesson(id,side=prefs.side,{save=true,variant:nextVariant}={}){
  if(!variantIds(found).includes(nextVariant))throw Error('Unknown setup.');
  lastVariants.set(id,nextVariant);
  revision++;evalSequence++;lesson=found;player=side;variant=nextVariant;prefs.side=side;game=new Chess(initialFen(lesson,side,variant));selected=null;flipped=side==='b';busy=false;finished=false;success=false;opponentError=false;reviewPly=null;usedHelp=false;credited=false;attemptRecorded=false;pendingPromotion=null;marks=[];markFrom=null;markMode=false;evalKey=null;evalValue=null;
- pointer?.cancel();$('promotion-dialog').close();clearHint();feedback={key:'intro'};localize();if(save)saveSession();
+ pointer?.cancel();$('promotion-dialog').close();mobileUI?.closePanel();clearHint();feedback={key:'intro'};localize();if(save)saveSession();
 }
 function restoreSession(snapshot){
  if(!snapshot){startLesson(lessons[0].id);return;}
@@ -154,7 +155,7 @@ function render(){
  $('board').classList.toggle('reviewing',isReviewing());$('evaluation').hidden=!prefs.evaluation;refreshEvaluation();
 }
 function creditWin(){if(credited)return;newAttempt();credited=true;const r=data.progress[recordKey()],moves=game.history({verbose:true}).filter(m=>m.color===player).length;r.wins++;if(!usedHelp)r.cleanWins++;r.bestMoves=r.bestMoves===null?moves:Math.min(r.bestMoves,moves);r.lastPlayed=new Date().toISOString();data.activity[localDay()]=(data.activity[localDay()]||0)+1;}
-function markFinished(key,won){finished=true;busy=false;success=won;if(won){creditWin();sounds.play('win');}message(key);renderLibrary();render();saveSession();if(!isReviewing())$('practice-result').scrollIntoView?.({block:'nearest',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});}
+function markFinished(key,won){mobileUI?.closePanel();finished=true;busy=false;success=won;if(won){creditWin();sounds.play('win');}message(key);renderLibrary();render();saveSession();if(!isReviewing())$('practice-result').scrollIntoView?.({block:'nearest',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});}
 function checkOutcome(){
  const result=assessOutcome(game,lesson,player);
  if(!result.finished)return false;markFinished(result.key,result.success);return true;
@@ -207,7 +208,7 @@ $('board').addEventListener('keydown',e=>{const squares=[...$('board').children]
 $('lesson-search').oninput=e=>{libraryQuery=e.target.value;renderLibrary();};
 for(const [id,key] of [['group-filter','libraryGroup'],['level-filter','libraryLevel'],['status-filter','libraryStatus']])$(id).onchange=e=>{prefs[key]=e.target.value;renderLibrary();saveSession();};
 $('clear-filters').onclick=()=>{libraryQuery='';$('lesson-search').value='';prefs.libraryGroup='all';prefs.libraryLevel='all';prefs.libraryStatus='all';localize();saveSession();};$('shuffle-btn').onclick=choosePractice;
-$('exercise-list').onclick=e=>{const b=e.target.closest('[data-lesson]');if(b){startLesson(b.dataset.lesson);if(innerWidth<681)$('exercise-title').scrollIntoView({block:'start',behavior:'instant'});}};
+$('exercise-list').onclick=e=>{const b=e.target.closest('[data-lesson]');if(b){startLesson(b.dataset.lesson);mobileUI?.returnToBoard({heading:true});}};
 $('undo-btn').onclick=undo;$('reset-btn').onclick=()=>startLesson(lesson.id,player,{variant});$('result-retry').onclick=$('reset-btn').onclick;$('randomize-btn').onclick=randomizePractice;$('flip-btn').onclick=()=>{pointer.cancel();flipped=!flipped;renderBoard();saveSession();};$('hint-btn').onclick=()=>void showHint();
 $('next-btn').onclick=()=>{if(!success){startLesson(lesson.id,player,{variant});return;}const visible=new Set(matchingLessons().map(l=>l.id)),i=lessons.indexOf(lesson),pool=lessons.slice(i+1).concat(lessons.slice(0,i)).filter(l=>visible.has(l.id)),next=pool.find(l=>!data.progress[`${l.id}:${player}`]?.wins)||pool[0]||lesson;startLesson(next.id,player,next.id===lesson.id?{variant}:{});};
 $('mark-btn').onclick=()=>{markMode=!markMode;selected=null;markFrom=null;render();};$('clear-marks-btn').onclick=()=>{marks=[];markFrom=null;renderBoard();};$('quick-dots').onclick=()=>changePreference('dots',!prefs.dots);$('quick-eval').onclick=()=>changePreference('evaluation',!prefs.evaluation);
@@ -225,8 +226,9 @@ $('import-btn').onclick=()=>$('import-file').click();$('import-file').onchange=a
 $('confirm-import').onclick=()=>{if(!pendingImport)return;libraryQuery='';$('lesson-search').value='';const snapshot=pendingImport.session;data=pendingImport;prefs=data.preferences;pendingImport=null;$('import-dialog').close();$('progress-dialog').close();persist({replace:true});restoreSession(snapshot);toast('importDone');};
 document.addEventListener('pointerdown',()=>sounds.unlock(),{passive:true});document.addEventListener('keydown',e=>{sounds.unlock();if(e.metaKey||e.ctrlKey||e.altKey||document.querySelector('dialog[open]')||['INPUT','SELECT','TEXTAREA'].includes(e.target.tagName))return;const actions={h:()=>void showHint(),f:()=>$('flip-btn').click(),u:undo};if(actions[e.key.toLowerCase()]){e.preventDefault();actions[e.key.toLowerCase()]();}});
 window.addEventListener('storage',event=>{if(event.key===KEY)void persist();});
+mobileUI=setupMobileUI({translate:key=>t(key),showProgress:()=>{renderProgress();$('progress-dialog').showModal();}});
 const snapshot=data.session;restoreSession(snapshot);engine.init().then(()=>{engineReady=true;$('engine-note').textContent=t('engineNote');}).catch(()=>{engineFailed=true;$('engine-note').textContent=t('engineRetry');});
-setupOffline({onStatus:key=>{offlineState=key;$('offline-status').textContent=t(key);},onUpdate:activate=>{$('update-banner').hidden=false;$('update-btn').onclick=async()=>{await saveSession();activate();};},onInstall:install=>{$('install-btn').hidden=false;$('install-btn').onclick=install;}});
+setupOffline({onStatus:key=>{offlineState=key;$('offline-status').textContent=t(key);},onUpdate:activate=>{$('update-banner').hidden=false;$('update-btn').onclick=async()=>{await saveSession();activate();};},onInstall:install=>{$('install-btn').hidden=!install;$('install-btn').onclick=install||null;}});
 if(document.modelContext?.registerTool){
  const lifecycle=new AbortController();const definitions=[
   {name:'read_practice_position',description:'Read the live and displayed endgame position, preferences, legal moves and progress.',inputSchema:{type:'object',properties:{},additionalProperties:false},annotations:{readOnlyHint:true,untrustedContentHint:false},execute:()=>readState()},

@@ -22,3 +22,6 @@ copy.zh.engineLoading='正在加载棋引擎…';
 
 Object.assign(copy.en,{randomize:'Randomize',randomizeHelp:'Start this exercise with a different equivalent setup. The goal stays the same.',setupCount:'Setup {n} of {total}',resultSuccess:'Success!',resultFailure:'Unsuccessful',resultRetry:'Try again',helpMarks:'Right-click to draw a circle, or right-drag to draw an arrow. A normal click clears your drawings. On touch screens, switch Mark on to draw, then off to play.'});
 Object.assign(copy.zh,{randomize:'随机局面',randomizeHelp:'切换到同一练习的另一个等价局面，练习目标不变。',setupCount:'局面 {n} / {total}',resultSuccess:'练习成功！',resultFailure:'未能完成',resultRetry:'再试一次',helpMarks:'右键点击画圈，右键拖动画箭头。正常点击棋盘即可清除标记。触屏可开启“标记”来绘制，关闭后继续走棋。'});
+
+Object.assign(copy.en,{practiceGoal:'Goal: {goal}',practiceNavigation:'Practice navigation',boardTab:'Board',coach:'Coach',progressTab:'Progress',backToBoard:'Back to board'});
+Object.assign(copy.zh,{practiceGoal:'目标：{goal}',practiceNavigation:'练习导航',boardTab:'棋盘',coach:'指导',progressTab:'进度',backToBoard:'返回棋盘'});

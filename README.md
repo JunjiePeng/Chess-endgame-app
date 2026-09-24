@@ -6,6 +6,8 @@ A static chess endgame practice room, published at https://junjiepeng.github.io/
 
 Clicking an exercise automatically picks a setup different from the last one used for that exercise during this visit, including when returning from another exercise. Randomize does the same for the current exercise: pawn endings have two equivalent file reflections, and pawnless endings have eight board symmetries. Hints and saved games follow the selected setup; Restart repeats it. A normal board click clears manual drawings outside touch Mark mode. Finishes show a green Success or red Unsuccessful result with the reason and a retry button.
 
+On phones, bottom navigation opens the endgame library, coaching panel, progress and settings without a long page scroll. Panels share the live controls and return directly to the board; the compact header, larger touch targets, safe-area spacing and 16px form fields support phone and installed-app use.
+
 Settings, per-colour results (including successful defensive draws), daily completion streaks and the current game are saved locally. Your progress offers validated JSON backup export/import. Language and mute preferences are initially inherited from the opening trainer when available on the same origin; its progress and other settings are never changed. There is no cloud sync or account requirement.
 
 Progress changes merge across open tabs using Web Locks where available. An idle tab preserves the latest saved game and settings. Damaged autosaved positions are discarded independently of valid results; manual backup imports remain strictly validated. Superseded queued engine analyses are skipped, and engine failures can be retried.
